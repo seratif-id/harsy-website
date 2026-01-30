@@ -22,11 +22,16 @@ export const HowToOrder: React.FC = () => {
       number: "04",
       title: "Proses Rajut",
       description: "Kami mulai merajut pesanan Anda dengan penuh ketelitian."
+    },
+       {
+      number: "05",
+      title: "Pengiriman",
+      description: "Produk akan sampai pada Anda dengan aman dan cepat."
     }
   ];
 
   return (
-    <section className="section-padding bg-brand-primary text-white relative overflow-hidden">
+    <section className="section-padding bg-brand-primary text-white relative overflow-hidden pt-8 pb-16">
       {/* Background patterns */}
       <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `radial-gradient(circle at 10px 10px, white 2px, transparent 0)`, backgroundSize: '40px 40px' }} />
       
@@ -37,7 +42,7 @@ export const HowToOrder: React.FC = () => {
           <div className="w-20 h-1.5 bg-brand-secondary rounded-full" />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {steps.map((step, index) => (
             <div key={index} className="relative group">
               {/* Connector line for desktop */}
