@@ -3,7 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
-import { ImagePlaceholder } from "../../atoms/ImagePlaceholder";
 
 export const Hero: React.FC = () => {
   return (
@@ -60,7 +59,7 @@ export const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-brand-secondary/20 rounded-3xl rotate-6 blur-2xl" />
                 <div className="absolute inset-0 bg-brand-primary/10 rounded-3xl -rotate-3 blur-xl" />
                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-[16px] border-white flex items-center justify-center group">
-                   <ImagePlaceholder text="Harsy Crochet" className="scale-110 group-hover:scale-125 transition-transform duration-[2s]" />
+                   <Image src="/sampleImage/heroImg.png" alt="Logo" width={550} height={50}  className="scale-110 group-hover:scale-125 transition-transform duration-[2s] " />
                    <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/20 to-transparent" />
                 </div>
                 

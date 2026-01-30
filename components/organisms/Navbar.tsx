@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "../atoms/Button";
+import Image from "next/image";
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,7 +28,7 @@ export const Navbar: React.FC = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-12 h-12 bg-brand-primary rounded-2xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-all duration-500 shadow-lg shadow-brand-primary/20">
-             <span className="text-brand-secondary font-display font-bold text-2xl drop-shadow-sm">H</span>
+             <Image src="/logo.png" alt="Logo" width={50} height={50} />
           </div>
           <div className="flex flex-col -gap-1">
             <span className="font-display text-2xl font-bold text-brand-primary tracking-tight leading-none">Harsy</span>
