@@ -7,7 +7,7 @@ import React from "react";
 
 export const ContactSection: React.FC = () => {
   return (
-    <section className="section-padding bg-white overflow-hidden">
+    <section className="section-padding bg-white overflow-hidden pt-8 pb-16">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div>
@@ -28,7 +28,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-display text-2xl font-bold text-brand-primary mb-2 tracking-tight">Alamat Workshop</h4>
-                  <p className="text-brand-primary/50 text-lg leading-relaxed">Jl. Rajutan Kasih No. 123, Jakarta Selatan, 12345</p>
+                  <p className="text-brand-primary/50 text-lg leading-relaxed">Jl. Mekarwangi No. 21 <br/> Kabupaten Bandung Barat <br/> Jawa Barat 40559</p>
                 </div>
               </div>
 
