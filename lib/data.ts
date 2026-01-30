@@ -3,23 +3,23 @@ import { Product, Category } from "./types";
 export const CATEGORIES: Category[] = [
   {
     id: "1",
-    name: "Boneka Crochet",
+    name: "Boneka Rajut",
     slug: "boneka",
-    image: "/images/cat-boneka.jpg",
+    image: "/sampleImage/catDoll.png",
     description: "Boneka rajut lucu dan aman untuk anak-anak."
   },
   {
     id: "2",
     name: "Tas Rajut",
     slug: "tas",
-    image: "/images/cat-tas.jpg",
+    image: "/sampleImage/catBag.png",
     description: "Tas handmade dengan desain unik dan modis."
   },
   {
     id: "3",
-    name: "Aksesoris",
+    name: "Aksesoris Rajut",
     slug: "aksesoris",
-    image: "/images/cat-aksesoris.jpg",
+    image: "/sampleImage/catAcc.png",
     description: "Pemanis penampilan dengan sentuhan rajutan."
   }
 ];
