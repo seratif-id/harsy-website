@@ -7,10 +7,10 @@ import { PRODUCTS } from "@/lib/data";
 
 export const NewProducts: React.FC = () => {
   // Showing the most recent products
-  const newProducts = PRODUCTS.slice(0, 4);
+  const newProducts = PRODUCTS.slice(0, 4).reverse();
 
   return (
-    <section className="section-padding pt-40 bg-white relative overflow-hidden">
+    <section className="section-padding pt-8 pb-16 bg-white relative overflow-hidden">
       {/* Subtle decorative pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: `radial-gradient(circle at 2px 2px, var(--brand-primary) 1px, transparent 0)`, backgroundSize: '32px 32px' }} />
       
