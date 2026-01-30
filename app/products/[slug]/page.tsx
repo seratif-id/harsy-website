@@ -46,7 +46,7 @@ export default function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="section-padding min-h-screen">
+    <div className="section-padding min-h-screen pt-32 pb-16">
       <div className="container mx-auto px-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-primary/30 mb-12">

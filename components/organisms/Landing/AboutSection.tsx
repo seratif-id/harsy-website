@@ -1,24 +1,25 @@
 import { ImagePlaceholder } from "../../atoms/ImagePlaceholder";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
+import Image from "next/image";
 import React from "react";
 
 export const AboutSection: React.FC = () => {
   return (
-    <section className="section-padding bg-white relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden pt-8 pb-16">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative">
             <div className="grid grid-cols-2 gap-6">
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-brand-primary/10 bg-brand-muted">
-                <ImagePlaceholder />
+                <Image src="/aboutImages/aboutImg1.png" alt="About" width={500} height={500} />
               </div>
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden translate-y-12 shadow-2xl shadow-brand-primary/10 bg-brand-muted">
-                <ImagePlaceholder />
+                <Image src="/aboutImages/aboutImg2.png" alt="About" width={500} height={500} />
               </div>
             </div>
             {/* Stats Badge */}
-            <div className="absolute -bottom-4 -right-4 glass p-8 rounded-3xl shadow-2xl max-w-[240px] border-none ring-1 ring-brand-primary/5">
-              <p className="font-display text-4xl font-black italic mb-2 text-brand-primary">5+ Tahun</p>
+            <div className="absolute -bottom-4 -right-4 bg-white opacity-85 p-8 rounded-3xl shadow-2xl max-w-[240px] border-none ring-1 ring-brand-primary/5">
+              <p className="font-display text-4xl font-black italic mb-2 text-brand-primary">1+ Tahun</p>
               <p className="text-brand-primary/50 text-xs font-bold uppercase tracking-wider leading-relaxed">
                 Menemani momen berharga anak-anak dengan rajutan tangan berkualitas.
               </p>

@@ -168,7 +168,7 @@ function OrderFormContent() {
 
 export default function OrderPage() {
   return (
-    <div className="section-padding min-h-screen bg-brand-muted/20">
+    <div className="section-padding min-h-screen bg-brand-muted/20 pt-32 pb-16">
       <div className="container mx-auto px-6">
         <SectionHeader 
           title="Lengkapi Pesanan Anda" 

@@ -21,7 +21,7 @@ export default function ProductsPage() {
     : PRODUCTS.filter(p => p.category === activeCategory);
 
   return (
-    <div className="section-padding min-h-screen">
+    <div className="min-h-screen mt-32 pb-16">
       <div className="container mx-auto px-6">
         <SectionHeader 
           title="Koleksi Rajutan Kami" 

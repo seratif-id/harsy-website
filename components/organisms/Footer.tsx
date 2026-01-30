@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-white/40 text-sm">
-          <p>© {new Date().getFullYear()} Harsy Handmade. All rights reserved.</p>
+          <p>© {new Date("2025").getFullYear()} Harsy Handmade. All rights reserved.</p>
           <p>Dibuat dengan ❤️ untuk Ibu & Si Kecil.</p>
         </div>
       </div>
