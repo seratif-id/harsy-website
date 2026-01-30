@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="absolute top-4 right-4 z-10">
             <Badge variant="accent" className="shadow-md backdrop-blur-sm bg-brand-accent/80">Baru</Badge>
           </div>
-          <ImagePlaceholder />
+          <Image src={product.image} alt={product.name} fill className="object-contain" />
           <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/5 transition-colors duration-700" />
         </div>
 

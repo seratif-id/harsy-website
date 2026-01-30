@@ -9,10 +9,10 @@ import Link from "next/link";
 
 export const FeaturedProducts: React.FC = () => {
   // Mocking featured products
-  const featured = PRODUCTS.slice(0, 3);
+  const featured = PRODUCTS.slice(0, 4);
 
   return (
-    <section className="section-padding pt-40 bg-brand-muted/30 relative overflow-hidden">
+    <section className="section-padding pt-8 pb-16 bg-brand-muted/30 relative overflow-hidden">
       {/* Decorative blob */}
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-secondary/10 rounded-full blur-[100px]" />
       

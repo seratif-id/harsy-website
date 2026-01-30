@@ -27,22 +27,22 @@ export const CATEGORIES: Category[] = [
 export const PRODUCTS: Product[] = [
   {
     id: "p1",
-    name: "Boneka Kelinci Soft",
-    slug: "boneka-kelinci-soft",
-    price: 85000,
-    image: "/images/p-kelinci.jpg",
-    category: "boneka",
+    name: "Bag Charm BTS Jongkook",
+    slug: "bag-charm-bts-jongkook",
+    price: 285000,
+    image: "/sampleImage/imgAcc1.png",
+    category: "aksesoris",
     rating: 4.9,
     sold: 24,
     estimatedTime: "3-4 hari",
-    description: "Boneka kelinci lembut dengan benang katun berkualitas."
+    description: "There are many ways to expressing your love to someone or something that you love. They may not phisically close but love knows no boundaries. You can admiring them through their picture, song, or something that you can bring along with you, yes bag charm."
   },
   {
     id: "p2",
     name: "Sling Bag Pastel",
     slug: "sling-bag-pastel",
-    price: 125000,
-    image: "/images/p-tas.jpg",
+    price: 325000,
+    image: "/sampleImage/catBag.png",
     category: "tas",
     rating: 4.8,
     sold: 15,
@@ -51,14 +51,26 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "p3",
-    name: "Gantungan Kunci Bunga",
-    slug: "gantungan-bunga",
-    price: 15000,
-    image: "/images/p-keychain.jpg",
-    category: "aksesoris",
+    name: "Adorable Deer",
+    slug: "adorable-deer",
+    price: 450000,
+    image: "/sampleImage/imgDoll1.png",
+    category: "boneka",
     rating: 5.0,
     sold: 52,
     estimatedTime: "1-2 hari",
-    description: "Gantungan kunci rajut bentuk bunga matahari."
+    description: "A calming color palette: beige, broken white, and earthy brown, with the softness of cotton, meet in this adorable deer. He is ready to be a new friend or the perfect baby gift!"
+  },
+    {
+    id: "p4",
+    name: "Milky Brown Bunny",
+    slug: "milky-brown-bunny",
+    price: 15000,
+    image: "/sampleImage/imgDoll2.png",
+    category: "boneka",
+    rating: 5.0,
+    sold: 52,
+    estimatedTime: "1-2 hari",
+    description: "The warm milky brown bunny pairs perfectly with the cool mint overalls. This blend of beige and pastel mint colors complement each other beautifully, accentuating every intricate detail of the crochet work."
   }
 ];
