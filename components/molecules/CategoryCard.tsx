@@ -9,7 +9,7 @@ interface CategoryCardProps {
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
   return (
-    <Link href={`/category/${category.slug}`} className="group relative block aspect-square overflow-hidden rounded-[2rem] bg-brand-primary shadow-xl shadow-brand-primary/10">
+    <Link href={`/products?category=${category.slug}`} className="group relative block aspect-square overflow-hidden rounded-[2rem] bg-brand-primary shadow-xl shadow-brand-primary/10">
       {/* Background Placeholder */}
       <div className="absolute inset-0 group-hover:scale-110 transition-transform duration-[1.5s] ease-out">
         <Image src={category.image} alt={category.description} width={500} height={500} />

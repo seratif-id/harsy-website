@@ -27,7 +27,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${isScrolled || isMenuOpen ? "py-4 m-4 rounded-3xl glass backdrop-blur-xl" : "py-8 bg-transparent"}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 outline-none ${isScrolled || isMenuOpen ? "py-4 m-4 rounded-3xl glass backdrop-blur-xl" : "py-8 bg-transparent"}`}>
         <div className="container mx-auto px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
             <div className="w-12 h-12 bg-brand-primary rounded-2xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-all duration-500 shadow-lg shadow-brand-primary/20">
@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden text-brand-primary relative z-[70] p-2"
+            className="md:hidden text-brand-primary relative z-[70] p-2 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle Menu"
           >
