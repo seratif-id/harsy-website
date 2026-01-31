@@ -21,7 +21,6 @@ export default function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Mock customization parts based on category
   const customizationParts = product.category === "boneka" 
     ? [
         { name: "Warna Badan", options: ["Cream", "Coklat", "Putih", "Pink"] },
@@ -48,7 +47,6 @@ export default function ProductDetailPage({ params }: PageProps) {
   return (
     <div className="section-padding min-h-screen pt-32 pb-16">
       <div className="container mx-auto px-6">
-        {/* Breadcrumbs */}
         <nav className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-primary/30 mb-12">
           <Link href="/" className="hover:text-brand-primary transition-colors">Beranda</Link>
           <span className="opacity-20">/</span>
@@ -58,7 +56,6 @@ export default function ProductDetailPage({ params }: PageProps) {
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-          {/* Image Gallery */}
           <div className="space-y-6">
             <div className="aspect-[4/5] bg-brand-muted rounded-[3rem] overflow-hidden relative shadow-2xl shadow-brand-primary/5 border-8 border-white group">
                <ImagePlaceholder text={product.name} className="scale-110 group-hover:scale-125 transition-transform duration-[2s]" />
@@ -75,7 +72,6 @@ export default function ProductDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Product Info */}
           <div className="flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <span className="text-brand-secondary font-black tracking-[0.2em] text-[10px] uppercase block">Product Detail</span>
@@ -153,7 +149,6 @@ export default function ProductDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Testimonials */}
         <div className="mt-32">
           <div className="flex flex-col items-center text-center mb-20">
             <span className="text-brand-secondary font-black tracking-[0.3em] text-[10px] uppercase mb-4">Feedback</span>

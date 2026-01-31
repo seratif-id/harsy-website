@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={`${quicksand.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
+        suppressHydrationWarning
       >
         <Navbar />
         <main className="flex-grow">

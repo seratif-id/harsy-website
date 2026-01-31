@@ -21,7 +21,6 @@ function OrderFormContent() {
   });
 
   useEffect(() => {
-    // Collect all search params except 'slug' as customization
     const custom: string[] = [];
     searchParams.forEach((value, key) => {
       if (key !== "slug") {
@@ -39,8 +38,7 @@ function OrderFormContent() {
   const handleOrder = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Construct Instagram Message
-    const instagramUsername = "harsy.handmade"; // Change to actual username
+    const instagramUsername = "harsy.handmade";
     const baseMsg = `Halo Harsy Handmade! Saya ingin memesan:\n\n` +
                  `Produk: ${product?.name || "Custom Design"}\n` +
                  `Custom: ${formData.customization}\n` +
@@ -49,9 +47,7 @@ function OrderFormContent() {
                  `WA: ${formData.whatsapp}`;
     
     const encodedMsg = encodeURIComponent(baseMsg);
-    // Note: Instagram doesn't support direct message pre-filling via URL as well as WhatsApp,
-    // but we can direct them to the profile or use a web-based intent if available.
-    // For now, redirecting to profile or a generic link.
+
     window.open(`https://www.instagram.com/${instagramUsername}/`, "_blank");
     
     // Alternatively, if the user prefers WhatsApp for easier pre-filling:
@@ -62,7 +58,6 @@ function OrderFormContent() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-      {/* Product Summary */}
       <div className="bg-white p-10 rounded-[3rem] shadow-2xl shadow-brand-primary/5 border border-brand-primary/5 sticky top-32 group">
         <div className="flex items-center gap-3 mb-8">
           <span className="text-brand-secondary font-black tracking-[0.2em] text-[10px] uppercase block">Ringkasan</span>
@@ -110,7 +105,6 @@ function OrderFormContent() {
         </div>
       </div>
 
-      {/* Order Form */}
       <div className="pt-12 lg:pt-0">
         <form onSubmit={handleOrder} className="space-y-10">
           <div className="space-y-4">

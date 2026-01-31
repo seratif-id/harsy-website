@@ -1,6 +1,5 @@
 "use client";
-
-import { ImagePlaceholder } from "../../atoms/ImagePlaceholder";
+import { Instagram } from "lucide-react";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { Button } from "@/components/atoms/Button";
 import React from "react";
@@ -17,7 +16,7 @@ export const ContactSection: React.FC = () => {
             </div>
             
             <SectionHeader 
-              title="Kunjungi Workshop Kam" 
+              title="Kunjungi Workshop Kami" 
               subtitle="Kami terbuka untuk diskusi desain secara langsung atau sekadar menyapa dan melihat proses produksi kami."
             />
             
@@ -51,7 +50,7 @@ export const ContactSection: React.FC = () => {
                
                <div className="relative z-10 text-center">
                   <div className="w-20 h-20 bg-brand-secondary rounded-3xl flex items-center justify-center mb-8 mx-auto shadow-xl shadow-brand-secondary/20 group-hover:scale-110 transition-transform duration-500">
-                    <svg className="w-10 h-10 text-brand-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.246-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.246-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.246 3.607-1.308 1.266-.058 1.646-.07 4.85-.07m0-2.163c-3.259 0-3.667.014-4.947.072-1.277.057-2.15.26-2.912.557-.788.306-1.457.715-2.122 1.38-.665.665-1.074 1.334-1.38 2.122-.3.762-.501 1.635-.558 2.912-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.057 1.277.26 2.15.557 2.912.306.788.715 1.457 1.38 2.122.665.665 1.334 1.074 2.122 1.38.762.3 1.635.501 2.912.558 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.057 2.15-.26 2.912-.557.788-.306 1.457-.715 2.122-1.38.665-.665 1.074-1.334 1.38-2.122.3-.762.501-1.635.558-2.912.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.057-1.277-.26-2.15-.557-2.912-.306-.788-.715-1.457-1.38-2.122-.665-.665-1.334-1.074-2.122-1.38-.762-.3-1.635-.501-2.912-.558-1.28-.057-1.688-.072-4.947-.072z"></path></svg>
+                    <Instagram className="w-10 h-10 text-brand-primary" />
                   </div>
                   <h3 className="font-display text-3xl md:text-5xl font-black text-brand-primary mb-6 tracking-tighter">Ide Custom?</h3>
                   <p className="text-brand-primary/50 text-lg mb-12 max-w-sm mx-auto leading-relaxed">Konsultasikan desain impianmu langsung via Instagram bersama artisan kami.</p>
