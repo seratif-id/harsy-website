@@ -2,26 +2,45 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/atoms/Button";
-import { SectionHeader } from "@/components/molecules/SectionHeader";
 import Link from "next/link";
-import { useAuth } from "@/context/AuthContext";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      login(email);
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (result?.error) {
+        setError("Email atau kata sandi salah");
+      } else {
+        router.push("/admin"); // Or dynamic based on role, but generally to home or admin
+      }
+    } catch (err) {
+      setError("Terjadi kesalahan saat masuk");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = () => {
-    login("bunda@gmail.com"); 
+    signIn("google", { callbackUrl: "/" });
   };
 
   return (
@@ -41,6 +60,12 @@ export default function LoginPage() {
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-5">
+                    {error && (
+                      <div className="bg-red-50 text-red-500 text-sm font-bold px-4 py-3 rounded-xl border border-red-100 text-center">
+                        {error}
+                      </div>
+                    )}
+                    
                     <div className="space-y-2">
                         <label className="text-[10px] font-bold uppercase tracking-wider text-brand-primary ml-2">Email Bunda</label>
                         <input 
@@ -94,8 +119,8 @@ export default function LoginPage() {
                         <Link href="#" className="text-xs font-bold text-brand-secondary hover:underline">Lupa Kata Sandi?</Link>
                     </div>
                     
-                    <Button type="submit" size="lg" className="w-full h-14 rounded-2xl text-lg font-black shadow-lg shadow-brand-primary/20 hover:translate-y-[-2px]">
-                        Masuk Sekarang
+                    <Button type="submit" size="lg" disabled={isLoading} className="w-full h-14 rounded-2xl text-lg font-black shadow-lg shadow-brand-primary/20 hover:translate-y-[-2px] disabled:opacity-70 disabled:cursor-not-allowed">
+                        {isLoading ? "Memproses..." : "Masuk Sekarang"}
                     </Button>
                 </form>
 

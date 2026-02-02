@@ -65,6 +65,58 @@ Returns a list of products.
 ]
 ```
 
+## API Reference
+
+### Authentication (`/api/auth/*`)
+Handled by **NextAuth.js**.
+- `POST /api/auth/signin`: Sign in.
+- `POST /api/auth/signout`: Sign out.
+- `GET /api/auth/session`: Get current session.
+
+### Products (`/api/products`)
+
+#### GET /api/products
+Retrieve a list of all products.
+
+**Response:**
+```json
+[
+  {
+    "id": "p1",
+    "name": "Bag Charm BTS Jongkook",
+    "price": 35000,
+    "image": ["/uploads/Product 1.png"],
+    ...
+  }
+]
+```
+
+#### GET /api/products/:slug
+Retrieve a single product by slug.
+
+**Response:**
+```json
+{
+  "id": "p1",
+  "name": "Bag Charm BTS Jongkook",
+  "slug": "bag-charm-bts-jongkook",
+  ...
+}
+```
+
+### Orders (`/api/orders`)
+
+#### POST /api/orders
+Create a new order.
+
+**Request:**
+```json
+{
+  "items": [{ "productId": "p1", "quantity": 1, "customization": {...} }],
+  "customer": { "name": "Bunda", "email": "..." }
+}
+```
+
 #### Badge Logic (Frontend Calculated)
 
 Badges are determined dynamically based on the full product dataset:

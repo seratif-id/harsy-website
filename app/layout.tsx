@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 import { Navbar } from "@/components/organisms/Navbar";
 import { Footer } from "@/components/organisms/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
 
 export default function RootLayout({
   children,
@@ -32,13 +33,15 @@ export default function RootLayout({
         className={`${quicksand.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
-        <AuthProvider>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </AuthProvider>
+        <NextAuthProvider>
+          <AuthProvider>
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </AuthProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

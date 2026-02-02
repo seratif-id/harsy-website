@@ -1,7 +1,6 @@
 import { Product } from "@/lib/types";
-import { PRODUCTS } from "@/lib/data";
 
-interface BadgeResult {
+export interface BadgeResult {
   label: string;
   variant: "primary" | "secondary" | "accent" | "outline";
 }
@@ -10,7 +9,7 @@ interface BadgeResult {
  * Determines the badges for a product based on global comparison.
  * Returns an array of qualifying badges.
  */
-export const getProductBadges = (product: Product): BadgeResult[] => {
+export const getProductBadges = (product: Product, allProducts: Product[]): BadgeResult[] => {
   const badges: BadgeResult[] = [];
 
   // 1. Check Top Deal
@@ -23,7 +22,7 @@ export const getProductBadges = (product: Product): BadgeResult[] => {
   const currentDiscount = calculateDiscount(product);
   
   if (currentDiscount > 0) {
-    const maxDiscount = Math.max(...PRODUCTS.map(calculateDiscount));
+    const maxDiscount = Math.max(...allProducts.map(calculateDiscount));
     // If multiple have max discount, they all get it.
     if (currentDiscount >= maxDiscount) {
       badges.push({ label: "Top Deal", variant: "accent" });
@@ -32,7 +31,7 @@ export const getProductBadges = (product: Product): BadgeResult[] => {
 
   // 2. Check Hot
   if (product.sold >= 5) {
-    const maxSold = Math.max(...PRODUCTS.map(p => p.sold));
+    const maxSold = Math.max(...allProducts.map(p => p.sold));
     if (product.sold >= maxSold) {
       badges.push({ label: "Hot", variant: "secondary" });
     }
@@ -41,7 +40,7 @@ export const getProductBadges = (product: Product): BadgeResult[] => {
   // 3. Check Recommended
   if ((product.reviewCount || 0) > 5) {
      const maxRating = Math.max(
-       ...PRODUCTS
+       ...allProducts
          .filter(p => (p.reviewCount || 0) > 5)
          .map(p => p.rating)
      );

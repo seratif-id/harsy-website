@@ -7,15 +7,18 @@ import { Badge } from "@/components/atoms/Badge";
 import { ImagePlaceholder } from "../atoms/ImagePlaceholder";
 
 import { getProductBadges } from "@/utils/badge";
+import { BadgeResult } from "@/utils/badge"; // Ensure type is exported (I might need to fix badge.ts export)
 
 interface ProductCardProps {
   product: Product;
   isFeatured?: boolean;
   isNew?: boolean;
+  badges?: any[]; // Using any[] for now as I need to check BadgeResult export
+  allProducts?: Product[];
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, isFeatured = false, isNew = false }) => {
-  const badges = getProductBadges(product);
+export const ProductCard: React.FC<ProductCardProps> = ({ product, isFeatured = false, isNew = false, badges: propBadges, allProducts }) => {
+  const badges = propBadges || (allProducts ? getProductBadges(product, allProducts) : []);
 
   return (
     <Link href={`/products/${product.slug}`} className="group block h-full">

@@ -3,10 +3,12 @@
 import React from "react";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ProductCard } from "@/components/molecules/ProductCard";
-import { PRODUCTS } from "@/lib/data";
+interface NewProductsProps {
+  products: any[];
+}
 
-export const NewProducts: React.FC = () => {
-  const newProducts = [...PRODUCTS]
+export const NewProducts: React.FC<NewProductsProps> = ({ products }) => {
+  const newProducts = [...products]
     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, 4);
 
@@ -23,7 +25,7 @@ export const NewProducts: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {newProducts.map((product) => (
-            <ProductCard key={product.id} product={product} isNew={true} />
+            <ProductCard key={product.id} product={product} isNew={true} allProducts={products} />
           ))}
         </div>
       </div>

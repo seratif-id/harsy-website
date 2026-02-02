@@ -3,14 +3,16 @@
 import React from "react";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ProductCard } from "@/components/molecules/ProductCard";
-import { PRODUCTS } from "@/lib/data";
 import { Button } from "@/components/atoms/Button";
 import Link from "next/link";
-
 import { getProductBadges } from "@/utils/badge";
 
-export const FeaturedProducts: React.FC = () => {
-  const featured = PRODUCTS.filter(p => getProductBadges(p).length > 0).slice(0, 4);
+interface FeaturedProductsProps {
+  products: any[];
+}
+
+export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products }) => {
+  const featured = products.filter(p => getProductBadges(p, products).length > 0).slice(0, 4);
 
   return (
     <section className="section-padding pt-8 pb-16 bg-brand-muted/30 relative overflow-hidden">
@@ -37,7 +39,7 @@ export const FeaturedProducts: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {featured.map((product) => (
-            <ProductCard key={product.id} product={product} isFeatured={true} />
+            <ProductCard key={product.id} product={product} isFeatured={true} allProducts={products} />
           ))}
         </div>
       </div>
