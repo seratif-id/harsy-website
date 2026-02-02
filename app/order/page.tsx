@@ -1,16 +1,28 @@
 "use client";
 
 import React, { useState, useEffect, Suspense, use } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { PRODUCTS } from "@/lib/data";
 import { Button } from "@/components/atoms/Button";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ImagePlaceholder } from "@/components/atoms/ImagePlaceholder";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
 
 function OrderFormContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
+  
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/login");
+    }
+  }, [isAuthenticated, router]);
+
+  if (!isAuthenticated) return null; // Or a loading spinner
+
   const productSlug = searchParams.get("slug");
   const product = PRODUCTS.find((p) => p.slug === productSlug);
 
