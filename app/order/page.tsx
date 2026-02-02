@@ -58,7 +58,7 @@ function OrderFormContent() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-      <div className="bg-white p-10 rounded-[3rem] shadow-2xl shadow-brand-primary/5 border border-brand-primary/5 sticky top-32 group">
+      <div className="bg-white p-10 rounded-[3rem] shadow-2xl shadow-brand-primary/5 border border-brand-primary/5 md:sticky top-32 group">
         <div className="flex items-center gap-3 mb-8">
           <span className="text-brand-secondary font-black tracking-[0.2em] text-[10px] uppercase block">Ringkasan</span>
         </div>
@@ -100,7 +100,7 @@ function OrderFormContent() {
           </p>
           <p className="flex items-center gap-4 font-medium">
             <span className="w-6 h-6 rounded-lg bg-green-500/10 text-green-600 flex items-center justify-center text-xs">✓</span> 
-            Pengiriman dari Jakarta Selatan
+            Pengiriman dari Kabupaten Bandung Barat
           </p>
         </div>
       </div>

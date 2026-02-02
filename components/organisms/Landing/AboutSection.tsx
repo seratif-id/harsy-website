@@ -18,7 +18,7 @@ export const AboutSection: React.FC = () => {
               </div>
             </div>
             {/* Stats Badge */}
-            <div className="absolute md:-bottom-4 -right-4 -top-20 bg-white opacity-85 p-8 rounded-3xl shadow-2xl max-w-[240px] border-none ring-1 ring-brand-primary/5">
+            <div className="absolute md:-bottom-20 -right-4 -top-20 md:top-75 bg-white opacity-85 p-8 rounded-3xl shadow-2xl max-w-[240px] border-none ring-1 ring-brand-primary/5">
               <p className="font-display text-4xl font-black italic mb-2 text-brand-primary">1+ Tahun</p>
               <p className="text-brand-primary/50 text-xs font-bold uppercase tracking-wider leading-relaxed">
                 Menemani momen berharga anak-anak dengan rajutan tangan berkualitas.

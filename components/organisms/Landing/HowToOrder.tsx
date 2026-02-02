@@ -51,7 +51,7 @@ export const HowToOrder: React.FC = () => {
               )}
               
               <div className="flex flex-col items-center lg:items-start">
-                <div className="w-24 h-24 bg-brand-secondary rounded-3xl flex items-center justify-center text-brand-primary font-display text-3xl font-black mb-8 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-brand-secondary/20">
+                <div className="w-24 h-24 bg-brand-secondary rounded-xl flex items-center justify-center text-brand-primary font-display text-3xl font-black mb-8 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-brand-secondary/20">
                   {step.number}
                 </div>
                 <h4 className="font-display text-2xl font-bold mb-4 text-center lg:text-left">{step.title}</h4>
