@@ -6,7 +6,9 @@ import { ProductCard } from "@/components/molecules/ProductCard";
 import { PRODUCTS } from "@/lib/data";
 
 export const NewProducts: React.FC = () => {
-  const newProducts = PRODUCTS.slice(0, 4).reverse();
+  const newProducts = [...PRODUCTS]
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+    .slice(0, 4);
 
   return (
     <section className="section-padding pt-8 pb-16 bg-white relative overflow-hidden">
@@ -21,7 +23,7 @@ export const NewProducts: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {newProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} isNew={true} />
           ))}
         </div>
       </div>

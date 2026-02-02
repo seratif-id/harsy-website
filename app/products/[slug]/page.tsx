@@ -13,6 +13,7 @@ interface PageProps {
 }
 
 import { ImagePlaceholder } from "@/components/atoms/ImagePlaceholder";
+import { getProductBadges } from "@/utils/badge";
 
 export default function ProductDetailPage({ params }: PageProps) {
   const { slug } = use(params);
@@ -67,8 +68,28 @@ export default function ProductDetailPage({ params }: PageProps) {
                  fill 
                  className="object-cover scale-110 group-hover:scale-125 transition-transform duration-[2s]" 
                />
-               <div className="absolute top-6 right-6 z-10">
-                 <Badge variant="accent" className="shadow-xl">Favorit Ibu</Badge>
+               <div className="absolute top-6 right-6 z-10 flex flex-col gap-1 items-end">
+                 {(() => {
+                   const isNew = [...PRODUCTS]
+                     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+                     .slice(0, 4)
+                     .some(p => p.id === product.id);
+                   
+                   const featuredBadges = getProductBadges(product);
+
+                   return (
+                     <>
+                       {isNew && (
+                         <Badge variant="accent" className="shadow-xl bg-brand-accent/90 backdrop-blur-sm">New</Badge>
+                       )}
+                       {featuredBadges.map((badge, idx) => (
+                         <Badge key={idx} variant={badge.variant} className="shadow-xl backdrop-blur-sm bg-opacity-90">
+                           {badge.label}
+                         </Badge>
+                       ))}
+                     </>
+                   );
+                 })()}
                </div>
             </div>
             <div className="flex-none flex px-2 p-2 gap-3 overflow-x-auto pb-2  [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-brand-primary/10 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-brand-primary/30 transition-colors">

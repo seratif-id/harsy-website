@@ -7,6 +7,7 @@ import { Button } from "@/components/atoms/Button";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ImagePlaceholder } from "@/components/atoms/ImagePlaceholder";
 import Link from "next/link";
+import Image from "next/image";
 
 function OrderFormContent() {
   const searchParams = useSearchParams();
@@ -68,7 +69,7 @@ function OrderFormContent() {
         {product ? (
           <div className="flex gap-8 mb-10">
             <div className="w-32 h-32 bg-brand-muted rounded-[2rem] flex-shrink-0 flex items-center justify-center border-4 border-white shadow-lg overflow-hidden relative">
-              <ImagePlaceholder text={product.name} />
+              <Image src={product.image[0]} alt={product.name} fill className="object-cover" />
             </div>
             <div className="flex flex-col justify-center">
               <span className="text-brand-primary/30 text-[10px] font-bold uppercase tracking-widest mb-1">{product.category}</span>

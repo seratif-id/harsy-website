@@ -34,3 +34,43 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## API Specification
+
+The backend currently serves mock data, but follows this contract:
+
+### GET /api/products
+
+Returns a list of products.
+
+**Response Structure:**
+
+```json
+[
+  {
+    "id": "string",
+    "name": "string",
+    "slug": "string",
+    "price": "number",
+    "originalPrice": "number (optional, triggers discount badge)",
+    "image": ["string"],
+    "category": "boneka" | "tas" | "aksesoris",
+    "rating": "number",
+    "reviewCount": "number (optional)",
+    "sold": "number",
+    "estimatedTime": "string",
+    "updatedAt": "string (ISO Date, used for New products)",
+    "description": "string"
+  }
+]
+```
+
+#### Badge Logic (Frontend Calculated)
+
+Badges are determined dynamically based on the full product dataset:
+- **New**: Top 4 products sorted by `updatedAt` descending.
+- **Top Deal**: `(originalPrice - price) / originalPrice` is the maximum among all products.
+- **Hot**: `sold` >= 5 and matches the maximum `sold` count.
+- **Recommended**: `reviewCount` > 5 and `rating` matches the maximum rating among qualified products.
+
+This logic is centralized in `utils/badge.ts`.

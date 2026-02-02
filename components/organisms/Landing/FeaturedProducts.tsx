@@ -7,8 +7,10 @@ import { PRODUCTS } from "@/lib/data";
 import { Button } from "@/components/atoms/Button";
 import Link from "next/link";
 
+import { getProductBadges } from "@/utils/badge";
+
 export const FeaturedProducts: React.FC = () => {
-  const featured = PRODUCTS.slice(0, 4);
+  const featured = PRODUCTS.filter(p => getProductBadges(p).length > 0).slice(0, 4);
 
   return (
     <section className="section-padding pt-8 pb-16 bg-brand-muted/30 relative overflow-hidden">
@@ -35,7 +37,7 @@ export const FeaturedProducts: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {featured.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} isFeatured={true} />
           ))}
         </div>
       </div>

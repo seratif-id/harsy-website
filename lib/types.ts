@@ -8,6 +8,9 @@ export interface Product {
   rating: number;
   sold: number;
   estimatedTime: string; // e.g. "2-3 hari"
+  originalPrice?: number;
+  reviewCount?: number;
+  updatedAt: string; // ISO Date string
   description?: string;
 }
 

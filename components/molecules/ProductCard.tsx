@@ -6,18 +6,33 @@ import { Badge } from "@/components/atoms/Badge";
 
 import { ImagePlaceholder } from "../atoms/ImagePlaceholder";
 
+import { getProductBadges } from "@/utils/badge";
+
 interface ProductCardProps {
   product: Product;
+  isFeatured?: boolean;
+  isNew?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, isFeatured = false, isNew = false }) => {
+  const badges = getProductBadges(product);
+
   return (
     <Link href={`/products/${product.slug}`} className="group block h-full">
-      <div className="bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(74,93,138,0.1)] hover:shadow-[0_20px_40px_-12px_rgba(74,93,138,0.2)] transition-all duration-700 border border-brand-primary/5 h-full flex flex-col group-hover:-translate-y-2">
+      <div className="bg-white rounded-xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(74,93,138,0.1)] hover:shadow-[0_20px_40px_-12px_rgba(74,93,138,0.2)] transition-all duration-700 border border-brand-primary/5 h-full flex flex-col group-hover:-translate-y-2">
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-brand-muted">
-          <div className="absolute top-4 right-4 z-10">
-            <Badge variant="accent" className="shadow-md backdrop-blur-sm bg-brand-accent/80">Baru</Badge>
+          <div className="absolute top-4 right-4 z-10 flex flex-col gap-1 items-end">
+            {isNew && (
+              <Badge variant="accent" className="shadow-md backdrop-blur-sm bg-brand-accent/90">
+                New
+              </Badge>
+            )}
+            {isFeatured && badges.length > 0 && badges.map((badge, idx) => (
+              <Badge key={idx} variant={badge.variant} className="shadow-md backdrop-blur-sm bg-opacity-90">
+                {badge.label}
+              </Badge>
+            ))}
           </div>
           <Image src={product.image[0]} alt={product.name} fill className="object-contain" />
           <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/5 transition-colors duration-700" />
@@ -49,10 +64,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <div className="mt-auto pt-4 border-t border-brand-primary/5 flex items-center justify-between">
             <div>
-              <p className="text-[9px] font-bold text-brand-primary/30 uppercase tracking-[0.1em] leading-none mb-1">Mulai dari</p>
-              <p className="font-display text-xl font-bold text-brand-primary">
-                <span className="text-xs mr-0.5">Rp</span>{product.price.toLocaleString("id-ID")}
-              </p>
+              {isFeatured && product.originalPrice && product.originalPrice > product.price ? (
+                <div className="mb-1">
+                  <p className="text-[9px] font-bold text-brand-primary/30 uppercase tracking-[0.1em] leading-none mb-1">Mulai dari</p>
+                  <div className="flex items-center gap-2 mb-0.5">
+                     <span className="text-[10px] line-through text-brand-primary/40">Rp{product.originalPrice.toLocaleString("id-ID")}</span>
+                     <span className="text-[9px] font-black text-red-500 bg-red-50 px-1.5 py-0.5 rounded-full">
+                       -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                     </span>
+                  </div>
+                  <p className="font-display text-xl font-bold text-brand-primary">
+                    <span className="text-xs mr-0.5">Rp</span>{product.price.toLocaleString("id-ID")}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <p className="text-[9px] font-bold text-brand-primary/30 uppercase tracking-[0.1em] leading-none mb-1">Mulai dari</p>
+                  <p className="font-display text-xl font-bold text-brand-primary">
+                    <span className="text-xs mr-0.5">Rp</span>{product.price.toLocaleString("id-ID")}
+                  </p>
+                </>
+              )}
             </div>
             <div className="w-10 h-10 rounded-2xl bg-brand-primary flex items-center justify-center text-white shadow-lg shadow-brand-primary/20 transform scale-90 group-hover:scale-100 transition-all duration-500">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4"></path></svg>

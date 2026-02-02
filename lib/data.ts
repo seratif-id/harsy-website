@@ -29,7 +29,8 @@ export const PRODUCTS: Product[] = [
     id: "p1",
     name: "Bag Charm BTS Jongkook",
     slug: "bag-charm-bts-jongkook",
-    price: 285000,
+    price: 50000,
+    originalPrice: 100000,
     image: [
       "/sampleImage/imgAcc1.png",
       "/sampleImage/imgAcc1.png",
@@ -38,16 +39,19 @@ export const PRODUCTS: Product[] = [
       "/sampleImage/imgAcc1.png",
     ],
     category: "aksesoris",
-    rating: 4.9,
-    sold: 24,
+    rating: 5.0,
+    sold: 100,
+    reviewCount: 50,
     estimatedTime: "3-4 hari",
+    updatedAt: "2024-01-25T10:00:00Z",
     description: "There are many ways to expressing your love to someone or something that you love. They may not phisically close but love knows no boundaries. You can admiring them through their picture, song, or something that you can bring along with you, yes bag charm."
   },
   {
     id: "p2",
     name: "Sling Bag Pastel",
     slug: "sling-bag-pastel",
-    price: 325000,
+    price: 50000,
+    originalPrice: 100000,
     image: [
       "/sampleImage/catBag.png",
       "/sampleImage/catBag.png",
@@ -56,35 +60,41 @@ export const PRODUCTS: Product[] = [
       "/sampleImage/catBag.png",
     ],
     category: "tas",
-    rating: 4.8,
-    sold: 15,
+    rating: 4.0,
+    sold: 10,
+    reviewCount: 15,
     estimatedTime: "5-7 hari",
+    updatedAt: "2024-01-24T10:00:00Z",
     description: "Tas selempang dengan warna pastel yang manis."
   },
   {
     id: "p3",
     name: "Adorable Deer",
     slug: "adorable-deer",
-    price: 450000,
+    price: 90000,
+    originalPrice: 100000,
     image: [
       "/sampleImage/imgDoll1.png",
       "/sampleImage/imgDoll1.png",
       "/sampleImage/imgDoll1.png",
       "/sampleImage/imgDoll1.png",
       "/sampleImage/imgDoll1.png",
-     
+      
     ],
     category: "boneka",
     rating: 5.0,
-    sold: 52,
+    sold: 10,
+    reviewCount: 30,
     estimatedTime: "1-2 hari",
+    updatedAt: "2024-01-23T10:00:00Z",
     description: "A calming color palette: beige, broken white, and earthy brown, with the softness of cotton, meet in this adorable deer. He is ready to be a new friend or the perfect baby gift!"
   },
     {
     id: "p4",
     name: "Milky Brown Bunny",
     slug: "milky-brown-bunny",
-    price: 15000,
+    price: 90000,
+    originalPrice: 100000,
     image: [
       "/sampleImage/imgDoll2.png",
       "/sampleImage/imgDoll2.png",
@@ -93,9 +103,11 @@ export const PRODUCTS: Product[] = [
       "/sampleImage/imgDoll2.png",
     ],
     category: "boneka",
-    rating: 5.0,
-    sold: 52,
+    rating: 4.0,
+    sold: 100,
+    reviewCount: 20,
     estimatedTime: "1-2 hari",
+    updatedAt: "2024-01-22T10:00:00Z",
     description: "The warm milky brown bunny pairs perfectly with the cool mint overalls. This blend of beige and pastel mint colors complement each other beautifully, accentuating every intricate detail of the crochet work."
   }
 ];
