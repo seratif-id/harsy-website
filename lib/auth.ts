@@ -38,15 +38,23 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
         if (user) {
+            token.id = user.id;
             token.role = (user as any).role;
             token.roleId = (user as any).roleId;
+            token.address = (user as any).address;
+            token.city = (user as any).city;
+            token.phone = (user as any).phone;
         }
         return token;
     },
     async session({ session, token }) {
         if (session.user) {
+            (session.user as any).id = token.id;
             (session.user as any).role = token.role;
             (session.user as any).roleId = token.roleId;
+            (session.user as any).address = token.address;
+            (session.user as any).city = token.city;
+            (session.user as any).phone = token.phone;
         }
         return session;
     }

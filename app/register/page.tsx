@@ -4,27 +4,65 @@ import React, { useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   
   const { login } = useAuth();
+  const router = useRouter();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Kata sandi tidak cocok!");
       return;
     }
-    
-    login(email);
+
+    setIsLoading(true);
+
+    try {
+        const res = await fetch("/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+                address,
+                city,
+                phone,
+                role: "user",
+                roleId: "role-user"
+            })
+        });
+
+        if (!res.ok) {
+            const data = await res.json();
+            throw new Error(data.error || "Registration failed");
+        }
+        
+        // Login after success
+        // Since we are using NextAuth credentials, we can just redirect to login with prefilled email, 
+        // or try to auto-login. For now, let's redirect to login.
+        alert("Registrasi berhasil! Silakan login.");
+        router.push("/login");
+
+    } catch (error: any) {
+        alert(error.message);
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   return (
@@ -66,6 +104,41 @@ export default function RegisterPage() {
                             placeholder="nama@email.com"
                             className="w-full h-12 px-6 rounded-2xl bg-brand-muted/20 border-2 border-transparent focus:bg-white focus:border-brand-primary/20 outline-none transition-all text-brand-primary font-bold placeholder:text-brand-primary/20"
                         />
+                    </div>
+
+                    {/* Address Fields */}
+                    <div className="space-y-2">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-brand-primary ml-2">Alamat Lengkap</label>
+                        <input 
+                            type="text" 
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            placeholder="Jl. Raya No. 123"
+                            className="w-full h-12 px-6 rounded-2xl bg-brand-muted/20 border-2 border-transparent focus:bg-white focus:border-brand-primary/20 outline-none transition-all text-brand-primary font-bold placeholder:text-brand-primary/20"
+                        />
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-brand-primary ml-2">Kota</label>
+                            <input 
+                                type="text" 
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                                placeholder="Jakarta"
+                                className="w-full h-12 px-6 rounded-2xl bg-brand-muted/20 border-2 border-transparent focus:bg-white focus:border-brand-primary/20 outline-none transition-all text-brand-primary font-bold placeholder:text-brand-primary/20"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-brand-primary ml-2">No. Telepon</label>
+                            <input 
+                                type="text" 
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                placeholder="0812..."
+                                className="w-full h-12 px-6 rounded-2xl bg-brand-muted/20 border-2 border-transparent focus:bg-white focus:border-brand-primary/20 outline-none transition-all text-brand-primary font-bold placeholder:text-brand-primary/20"
+                            />
+                        </div>
                     </div>
 
                     <div className="space-y-2">
@@ -128,8 +201,8 @@ export default function RegisterPage() {
                         </div>
                     </div>
                     
-                    <Button type="submit" size="lg" className="w-full h-14 mt-4 rounded-2xl text-lg font-black shadow-lg shadow-brand-primary/20 hover:translate-y-[-2px]">
-                        Daftar Sekarang
+                    <Button type="submit" disabled={isLoading} size="lg" className="w-full h-14 mt-4 rounded-2xl text-lg font-black shadow-lg shadow-brand-primary/20 hover:translate-y-[-2px]">
+                        {isLoading ? "Mendaftar..." : "Daftar Sekarang"}
                     </Button>
                 </form>
 

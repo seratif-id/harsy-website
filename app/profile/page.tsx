@@ -5,7 +5,7 @@ import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/atoms/Button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { User, Mail, Lock, Save, Loader2 } from "lucide-react";
+import { User, Mail, Lock, Save, Loader2, Camera } from "lucide-react";
 
 export default function ProfilePage() {
   const { user, login } = useAuth(); // Note: login here is just used to refresh session if needed, but optimally we should reload session
@@ -19,10 +19,28 @@ export default function ProfilePage() {
     email: user?.email || "",
     password: "",
     confirmPassword: "",
+    address: user?.address || "",
+    city: user?.city || "",
+    phone: user?.phone || "",
+    avatar: user?.avatar || ""
   });
+  const [avatarPreview, setAvatarPreview] = useState(user?.avatar || "");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setAvatarPreview(base64String);
+        setFormData(prev => ({ ...prev, avatar: base64String }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,6 +62,10 @@ export default function ProfilePage() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          address: formData.address,
+          city: formData.city,
+          phone: formData.phone,
+          avatar: formData.avatar,
           ...(formData.password ? { password: formData.password } : {}),
         }),
       });
@@ -71,14 +93,25 @@ export default function ProfilePage() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl" />
             
             <div className="relative z-10 flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-white p-1 shadow-lg mb-4">
-                 {user?.image ? (
-                    <Image src={user.image} alt={user.name} width={96} height={96} className="rounded-full object-cover w-full h-full" />
-                 ) : (
-                    <div className="w-full h-full rounded-full bg-brand-muted flex items-center justify-center text-3xl font-bold text-brand-primary">
-                      {user?.name?.charAt(0).toUpperCase()}
+              <div className="w-24 h-24 rounded-full bg-white p-1 shadow-lg mb-4 relative group cursor-pointer">
+                 <div className="w-full h-full rounded-full overflow-hidden relative">
+                    {avatarPreview ? (
+                        <Image src={avatarPreview} alt={user?.name || "User"} width={96} height={96} className="object-cover w-full h-full" />
+                    ) : (
+                        <div className="w-full h-full bg-brand-muted flex items-center justify-center text-3xl font-bold text-brand-primary">
+                        {user?.name?.charAt(0).toUpperCase()}
+                        </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Camera className="w-8 h-8 text-white" />
                     </div>
-                 )}
+                 </div>
+                 <input 
+                    type="file" 
+                    accept="image/*" 
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    onChange={handleImageChange}
+                 />
               </div>
               <h1 className="text-3xl font-display font-black text-white">{user?.name}</h1>
               <p className="text-white/70">{user?.email}</p>
@@ -125,6 +158,49 @@ export default function ProfilePage() {
                     className="w-full pl-12 pr-4 py-3 rounded-xl border border-brand-primary/10 bg-brand-muted/20 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
                     placeholder="nama@email.com"
                   />
+                </div>
+              </div>
+
+
+
+              <div className="pt-4 border-t border-brand-primary/5">
+                <p className="text-xs font-bold text-brand-primary/40 uppercase tracking-widest mb-4">Alamat & Kontak</p>
+                <div className="space-y-4">
+                     <div className="space-y-2">
+                        <label className="text-sm font-bold text-brand-primary/70 ml-1">Alamat Lengkap</label>
+                        <input
+                            type="text"
+                            name="address"
+                            value={formData.address || ""}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl border border-brand-primary/10 bg-brand-muted/20 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                            placeholder="Jl. Contoh No. 123"
+                        />
+                     </div>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                           <label className="text-sm font-bold text-brand-primary/70 ml-1">Kota</label>
+                           <input
+                                type="text"
+                                name="city"
+                                value={formData.city || ""}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 rounded-xl border border-brand-primary/10 bg-brand-muted/20 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                                placeholder="Jakarta Selatan"
+                           />
+                        </div>
+                        <div className="space-y-2">
+                           <label className="text-sm font-bold text-brand-primary/70 ml-1">No. Telepon</label>
+                           <input
+                                type="text"
+                                name="phone"
+                                value={formData.phone || ""}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 rounded-xl border border-brand-primary/10 bg-brand-muted/20 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all"
+                                placeholder="08123456789"
+                           />
+                        </div>
+                     </div>
                 </div>
               </div>
 

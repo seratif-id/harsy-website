@@ -90,7 +90,7 @@ export const UserList: React.FC<UserListProps> = ({ users }) => {
           const reviewsData = await reviewsRes.json();
 
           const orders: Order[] = Array.isArray(ordersData) ? ordersData : [];
-          const products: Product[] = Array.isArray(productsData) ? productsData : [];
+          const products: Product[] = Array.isArray(productsData) ? productsData : productsData.products || [];
           const reviews: Review[] = Array.isArray(reviewsData) ? reviewsData : [];
 
           // Get user's orders

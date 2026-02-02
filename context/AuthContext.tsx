@@ -4,12 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-interface User {
-  name: string;
-  email: string;
-  image?: string;
-  role?: string;
-}
+import { User } from "@/lib/types";
 
 interface AuthContextType {
   user: User | null;
@@ -25,11 +20,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { data: session, status } = useSession();
   const router = useRouter();
   
-  const user = session?.user ? {
+  const user: User | null = session?.user ? {
+    id: (session.user as any).id,
     name: session.user.name || "",
     email: session.user.email || "",
-    image: session.user.image || "",
-    role: (session.user as any).role
+    avatar: session.user.image || "",
+    role: (session.user as any).role,
+    roleId: (session.user as any).roleId,
+    address: (session.user as any).address,
+    city: (session.user as any).city,
+    phone: (session.user as any).phone,
   } : null;
 
   const login = (email: string) => {

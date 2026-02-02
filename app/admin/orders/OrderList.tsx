@@ -164,6 +164,7 @@ export const OrderList: React.FC<OrderListProps> = ({ orders, users, products })
                     <thead className="text-xs text-gray-500 uppercase bg-gray-50 border-b border-gray-200">
                         <tr>
                             <SortableHeader label="Order ID" sortKey="id" currentSort={sortConfig} onSort={requestSort} />
+                            <th className="px-6 py-3 font-medium">Products</th>
                             <th className="px-6 py-3 font-medium">Customer</th>
                             <SortableHeader label="Date" sortKey="createdAt" currentSort={sortConfig} onSort={requestSort} />
                             <SortableHeader label="Status" sortKey="status" currentSort={sortConfig} onSort={requestSort} />
@@ -180,6 +181,30 @@ export const OrderList: React.FC<OrderListProps> = ({ orders, users, products })
                                 return (
                                     <tr key={order.id} className="hover:bg-gray-50 transition-colors">
                                         <td className="px-6 py-4 font-mono text-xs text-gray-500">{order.id}</td>
+                                        <td className="px-6 py-4">
+                                            {(() => {
+                                                const firstItem = order.items[0];
+                                                const product = firstItem ? getProduct(firstItem.productId) : null;
+                                                const moreCount = order.items.length - 1;
+                                                return (
+                                                    <div className="flex items-center gap-3">
+                                                       <div className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 relative overflow-hidden flex-shrink-0">
+                                                           {product?.image?.[0] ? (
+                                                               <Image src={product.image[0]} alt={product.name} fill className="object-cover" />
+                                                           ) : (
+                                                               <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">img</div>
+                                                           )}
+                                                       </div>
+                                                       <div>
+                                                           <p className="font-medium text-gray-900 text-xs line-clamp-1 w-32" title={product?.name}>{product?.name || "Unknown Product"}</p>
+                                                           {moreCount > 0 && (
+                                                               <p className="text-[10px] text-gray-500 font-medium">+{moreCount} other items</p>
+                                                           )}
+                                                       </div>
+                                                    </div>
+                                                );
+                                            })()}
+                                        </td>
                                         <td className="px-6 py-4">
                                             <div 
                                                 className="flex items-center gap-3 cursor-pointer group/name"
@@ -345,6 +370,18 @@ export const OrderList: React.FC<OrderListProps> = ({ orders, users, products })
                                     <div>
                                         <p className="font-bold text-gray-900">{getUser(selectedOrder.userId)?.name}</p>
                                         <p className="text-gray-500 text-sm">{getUser(selectedOrder.userId)?.email}</p>
+                                        {getUser(selectedOrder.userId)?.phone && (
+                                            <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+                                                <span className="opacity-70">Phone:</span>
+                                                {getUser(selectedOrder.userId)?.phone}
+                                            </p>
+                                        )}
+                                        {getUser(selectedOrder.userId)?.address && (
+                                            <p className="text-gray-500 text-xs mt-0.5">
+                                                <span className="opacity-70">Addr:</span> {getUser(selectedOrder.userId)?.address}
+                                                {getUser(selectedOrder.userId)?.city && `, ${getUser(selectedOrder.userId)?.city}`}
+                                            </p>
+                                        )}
                                     </div>
                                 </>
                              ) : (

@@ -47,7 +47,7 @@ export default function AdminReviewsPage() {
             ]);
 
             setReviews(Array.isArray(reviewsData) ? reviewsData : []);
-            setProducts(Array.isArray(productsData) ? productsData : []);
+            setProducts(Array.isArray(productsData) ? productsData : productsData.products || []);
             setUsers(Array.isArray(usersData) ? usersData : []);
             setOrders(Array.isArray(ordersData) ? ordersData : []);
         } catch (error) {
@@ -217,16 +217,16 @@ export default function AdminReviewsPage() {
                       <td className="px-6 py-4">
                         {product ? (
                             <div 
-                                className={`flex items-center gap-3 ${review.orderId ? 'cursor-pointer hover:text-brand-primary' : ''}`}
+                                className={`flex items-center gap-3 ${review.orderId ? 'cursor-pointer group/product' : ''}`}
                                 onClick={() => review.orderId && handleViewOrder(review.orderId)}
                                 title={review.orderId ? "Click to view order details" : ""}
                             >
-                                <div className="w-10 h-10 rounded relative overflow-hidden bg-gray-100 flex-shrink-0">
+                                <div className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 relative overflow-hidden flex-shrink-0 group-hover/product:border-brand-primary/30 transition-colors">
                                     {product.image && product.image[0] && (
                                         <Image src={product.image[0]} alt={product.name} fill className="object-cover" />
                                     )}
                                 </div>
-                                <div className="font-medium text-gray-900 line-clamp-1 max-w-[150px] transition-colors group-hover:text-brand-primary" title={product.name}>{product.name}</div>
+                                <div className="font-medium text-gray-900 line-clamp-1 max-w-[150px] transition-colors group-hover/product:text-brand-primary" title={product.name}>{product.name}</div>
                             </div>
                         ) : (
                             <span className="text-gray-400 italic">Unknown Product</span>
@@ -395,6 +395,18 @@ export default function AdminReviewsPage() {
                                   <div>
                                       <p className="font-bold text-gray-900">{getUser(selectedOrder.userId)?.name}</p>
                                       <p className="text-gray-500 text-sm">{getUser(selectedOrder.userId)?.email}</p>
+                                      {getUser(selectedOrder.userId)?.phone && (
+                                          <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+                                              <span className="opacity-70">Phone:</span>
+                                              {getUser(selectedOrder.userId)?.phone}
+                                          </p>
+                                      )}
+                                      {getUser(selectedOrder.userId)?.address && (
+                                          <p className="text-gray-500 text-xs mt-0.5">
+                                              <span className="opacity-70">Addr:</span> {getUser(selectedOrder.userId)?.address}
+                                              {getUser(selectedOrder.userId)?.city && `, ${getUser(selectedOrder.userId)?.city}`}
+                                          </p>
+                                      )}
                                   </div>
                               </>
                            ) : (

@@ -30,7 +30,7 @@ export default function AdminOrdersPage() {
             setData({
                 orders: Array.isArray(orders) ? orders : [],
                 users: Array.isArray(users) ? users : [],
-                products: Array.isArray(products) ? products : []
+                products: Array.isArray(products) ? products : products.products || []
             });
         } catch (error) {
             console.error("Failed to fetch order data", error);

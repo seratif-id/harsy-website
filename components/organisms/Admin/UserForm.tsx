@@ -141,6 +141,51 @@ export const UserForm: React.FC<UserFormProps> = ({ initialData, isEdit = false 
         </div>
       </div>
 
+      <div className="border-t border-gray-100 pt-6">
+        <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span className="w-1 h-4 bg-brand-primary rounded-full"></span>
+            Contact Information
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                <input
+                name="address"
+                type="text"
+                value={formData.address || ""}
+                onChange={handleChange}
+                placeholder="Full address"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary"
+                />
+            </div>
+            
+            <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                <input
+                name="city"
+                type="text"
+                value={formData.city || ""}
+                onChange={handleChange}
+                placeholder="City"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary"
+                />
+            </div>
+
+            <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input
+                name="phone"
+                type="text"
+                value={formData.phone || ""}
+                onChange={handleChange}
+                placeholder="08..."
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary"
+                />
+            </div>
+        </div>
+      </div>
+
+
       <div className="flex justify-end pt-4">
         <button
           type="submit"
