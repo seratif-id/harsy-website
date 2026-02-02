@@ -7,27 +7,41 @@ import { Button } from "../atoms/Button";
 import Image from "next/image";
 import { Instagram } from "lucide-react";
 
-export const Navbar: React.FC = () => {
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface NavbarProps {
+  siteContent?: {
+    navbar?: {
+      links: NavLink[];
+      logo: {
+        name: string;
+        tagline: string;
+        image: string;
+      };
+    };
+  };
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  if (pathname?.startsWith("/admin")) return null;
-
-  const navLinks = [
+  const navLinks = siteContent?.navbar?.links || [
     { label: "Beranda", href: "/" },
     { label: "Produk", href: "/products" },
     { label: "Tentang", href: "/about" },
     { label: "Kontak", href: "/#contact" },
   ];
+
+  const logoData = siteContent?.navbar?.logo || {
+    name: "Harsy",
+    tagline: "Handmade",
+    image: "/logo.png"
+  };
 
   return (
     <>
@@ -35,17 +49,16 @@ export const Navbar: React.FC = () => {
         <div className="container mx-auto px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsMenuOpen(false)}>
             <div className="w-12 h-12 bg-brand-primary rounded-2xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-all duration-500 shadow-lg shadow-brand-primary/20">
-               <Image src="/logo.png" alt="Logo" width={50} height={50} />
+               <Image src={logoData.image} alt="Logo" width={50} height={50} />
             </div>
             <div className="flex flex-col -gap-1">
-              <span className="font-display text-2xl font-bold text-brand-primary tracking-tight leading-none">Harsy</span>
-              <span className="font-display text-[10px] uppercase tracking-[0.2em] text-brand-primary/40 font-bold">Handmade</span>
+              <span className="font-display text-2xl font-bold text-brand-primary tracking-tight leading-none">{logoData.name}</span>
+              <span className="font-display text-[10px] uppercase tracking-[0.2em] text-brand-primary/40 font-bold">{logoData.tagline}</span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
+            {navLinks.map((link: NavLink) => (
               <Link 
                 key={link.href} 
                 href={link.href} 
@@ -81,7 +94,7 @@ export const Navbar: React.FC = () => {
         <div className={`absolute top-0 right-0 bottom-0 w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-500 p-10 pt-40 ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
           <div className="flex flex-col gap-8">
             <span className="text-brand-secondary font-black tracking-[0.3em] text-md uppercase mb-2">Navigasi Utama</span>
-            {navLinks.map((link) => (
+            {navLinks.map((link: NavLink) => (
               <Link 
                 key={link.href} 
                 href={link.href} 

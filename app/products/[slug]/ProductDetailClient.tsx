@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ImagePlaceholder } from "@/components/atoms/ImagePlaceholder";
 import { getProductBadges } from "@/utils/badge";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Product, Review, User } from "@/lib/types";
 
 
@@ -41,6 +42,9 @@ interface ProductDetailClientProps {
   const [selections, setSelections] = useState<Record<string, string>>(
     Object.fromEntries(customizationParts.map(p => [p.name, p.options[0]]))
   );
+
+  const [currentReviewPage, setCurrentReviewPage] = useState(1);
+  const REVIEWS_PER_PAGE = 6;
 
   const handleSelection = (part: string, option: string) => {
     setSelections(prev => ({ ...prev, [part]: option }));
@@ -192,7 +196,7 @@ interface ProductDetailClientProps {
               <h3 className="font-display text-3xl md:text-4xl font-black text-brand-primary tracking-tighter">Kata Pemilik Baru</h3>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {(() => {
                   if (reviews.length === 0) {
                       return (
@@ -202,7 +206,11 @@ interface ProductDetailClientProps {
                       );
                   }
 
-                  return reviews.map((review) => {
+                  const totalReviewPages = Math.ceil(reviews.length / REVIEWS_PER_PAGE);
+                  const startIndex = (currentReviewPage - 1) * REVIEWS_PER_PAGE;
+                  const visibleReviews = reviews.slice(startIndex, startIndex + REVIEWS_PER_PAGE);
+
+                  return visibleReviews.map((review) => {
                     const user = users.find(u => u.id === review.userId);
                     return (
                       <div key={review.id} className="bg-white p-6 rounded-[2rem] shadow-lg shadow-brand-primary/5 border border-brand-primary/5 group hover:-translate-y-2 transition-all duration-500">
@@ -215,18 +223,18 @@ interface ProductDetailClientProps {
                             )}
                           </div>
                           <div>
-                            <p className="font-display font-black text-brand-primary">{user?.name || "Pengguna Harsy"}</p>
+                            <p className="font-display font-black text-brand-primary text-sm line-clamp-1">{user?.name || "Pengguna Harsy"}</p>
                             <div className="flex items-center gap-0.5 mt-1">
                               {[...Array(5)].map((_, i) => (
-                                <span key={i} className={`text-[10px] ${i < review.rating ? "text-yellow-400" : "text-gray-200"}`}>★</span>
+                                <Star key={i} className={`w-3 h-3 ${i < review.rating ? "text-yellow-400 fill-current" : "text-gray-200"}`} />
                               ))}
                             </div>
                           </div>
                         </div>
-                        <p className="text-brand-primary/50 text-base leading-relaxed italic font-medium">
+                        <p className="text-brand-primary/50 text-sm leading-relaxed italic font-medium line-clamp-4">
                           "{review.comment}"
                         </p>
-                        <p className="text-xs text-brand-primary/20 mt-4 font-bold tracking-widest uppercase">
+                        <p className="text-[10px] text-brand-primary/20 mt-4 font-bold tracking-widest uppercase">
                             {new Date(review.createdAt).toLocaleDateString("id-ID", { year: 'numeric', month: 'long', day: 'numeric' })}
                         </p>
                       </div>
@@ -234,6 +242,45 @@ interface ProductDetailClientProps {
                   });
               })()}
             </div>
+
+            {/* Review Pagination Controls */}
+            {reviews.length > REVIEWS_PER_PAGE && (
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={() => setCurrentReviewPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentReviewPage === 1}
+                  className="p-3 rounded-full border border-brand-primary/10 text-brand-primary disabled:opacity-20 hover:bg-brand-muted transition-all"
+                  aria-label="Previous Review Page"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                
+                <div className="flex items-center gap-2">
+                  {Array.from({ length: Math.ceil(reviews.length / REVIEWS_PER_PAGE) }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentReviewPage(page)}
+                      className={`w-10 h-10 rounded-full text-xs font-black transition-all ${
+                        currentReviewPage === page
+                          ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20 scale-110"
+                          : "bg-white text-brand-primary/30 border border-brand-primary/5 hover:bg-brand-muted"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setCurrentReviewPage(prev => Math.min(Math.ceil(reviews.length / REVIEWS_PER_PAGE), prev + 1))}
+                  disabled={currentReviewPage === Math.ceil(reviews.length / REVIEWS_PER_PAGE)}
+                  className="p-3 rounded-full border border-brand-primary/10 text-brand-primary disabled:opacity-20 hover:bg-brand-muted transition-all"
+                  aria-label="Next Review Page"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            )}
           </div>
       </div>
     </div>

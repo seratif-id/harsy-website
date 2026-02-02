@@ -9,10 +9,16 @@ import { getProductBadges } from "@/utils/badge";
 
 interface FeaturedProductsProps {
   products: any[];
+  content?: {
+    title: string;
+    subtitle: string;
+  };
 }
 
-export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products }) => {
+export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products, content }) => {
   const featured = products.filter(p => getProductBadges(p, products).length > 0).slice(0, 4);
+  const title = content?.title || "Produk Unggulan";
+  const subtitle = content?.subtitle || "Koleksi terbaik yang paling dicintai oleh pelanggan kami karena detail dan kelembutannya.";
 
   return (
     <section className="section-padding pt-8 pb-16 bg-brand-muted/30 relative overflow-hidden">
@@ -25,8 +31,8 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ products }) 
               <div className="w-10 h-0.5 bg-brand-secondary" />
               <span className="text-brand-primary/40 font-bold text-xs uppercase tracking-[0.3em]">Top Picks</span>
             </div>
-            <h2 className="font-display text-4xl md:text-6xl font-black text-brand-primary tracking-tighter leading-tight">Produk Unggulan</h2>
-            <p className="text-brand-primary/50 text-lg md:text-xl font-medium mt-4">Koleksi terbaik yang paling dicintai oleh pelanggan kami karena detail dan kelembutannya.</p>
+            <h2 className="font-display text-4xl md:text-6xl font-black text-brand-primary tracking-tighter leading-tight">{title}</h2>
+            <p className="text-brand-primary/50 text-lg md:text-xl font-medium mt-4">{subtitle}</p>
           </div>
           
           <Link href="/products">

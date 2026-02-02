@@ -4,7 +4,23 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/atoms/Button";
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  content?: {
+    title: string;
+    subtitle: string;
+    customerCount: string;
+    customerLabel: string;
+    image: string;
+  };
+}
+
+export const Hero: React.FC<HeroProps> = ({ content }) => {
+  const title = content?.title || "Seni Rajut Tanpa Batas";
+  const subtitle = content?.subtitle || "Menghadirkan kehangatan dalam setiap simpul rajutan untuk menemani tumbuh kembang si buah hati.";
+  const customerCount = content?.customerCount || "1,200+";
+  const customerLabel = content?.customerLabel || "Pelanggan Bahagia";
+  const imageSrc = content?.image || "/sampleImage/heroImg.png";
+
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-brand-muted/30">
       {/* Decorative blobs */}
@@ -22,12 +38,12 @@ export const Hero: React.FC = () => {
             </div>
             
             <h1 className="font-display text-6xl md:text-8xl text-brand-primary font-black mb-8 leading-[0.95] tracking-tighter">
-              Seni Rajut <br />
-              <span className="text-brand-secondary">Tanpa Batas</span>
+              {title.split(" ").slice(0, 2).join(" ")} <br />
+              <span className="text-brand-secondary">{title.split(" ").slice(2).join(" ")}</span>
             </h1>
             
             <p className="text-brand-primary/50 text-xl md:text-2xl mb-12 max-w-lg leading-relaxed font-medium">
-              Menghadirkan kehangatan dalam setiap simpul rajutan untuk menemani tumbuh kembang si buah hati.
+              {subtitle}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
@@ -48,8 +64,8 @@ export const Hero: React.FC = () => {
                 ))}
               </div>
               <div className="flex flex-col">
-                <span className="text-brand-primary font-black text-lg leading-none">1,200+</span>
-                <span className="text-brand-primary/40 text-[10px] font-bold uppercase tracking-wider">Pelanggan Bahagia</span>
+                <span className="text-brand-primary font-black text-lg leading-none">{customerCount}</span>
+                <span className="text-brand-primary/40 text-[10px] font-bold uppercase tracking-wider">{customerLabel}</span>
               </div>
             </div>
           </div>

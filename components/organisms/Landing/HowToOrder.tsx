@@ -1,8 +1,18 @@
 import React from "react";
 import { SectionHeader } from "@/components/molecules/SectionHeader";
 
-export const HowToOrder: React.FC = () => {
-  const steps = [
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface HowToOrderProps {
+  steps?: Step[];
+}
+
+export const HowToOrder: React.FC<HowToOrderProps> = ({ steps: propSteps }) => {
+  const defaultSteps = [
     {
       number: "01",
       title: "Pilih Produk",
@@ -29,6 +39,8 @@ export const HowToOrder: React.FC = () => {
       description: "Produk akan sampai pada Anda dengan aman dan cepat."
     }
   ];
+
+  const steps = propSteps || defaultSteps;
 
   return (
     <section className="section-padding bg-brand-primary text-white relative overflow-hidden pt-8 pb-16">

@@ -4,7 +4,21 @@ import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { Button } from "@/components/atoms/Button";
 import React from "react";
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  content?: {
+    address: string;
+    email: string;
+    instagram: string;
+    socialHandle: string;
+  };
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ content }) => {
+  const address = content?.address || "Jl. Mekarwangi No. 21 \n Kabupaten Bandung Barat \n Jawa Barat 40559";
+  const email = content?.email || "harsy.handmade@gmail.com";
+  const instagram = content?.instagram || "https://instagram.com/harsy.handmade";
+  const socialHandle = content?.socialHandle || "harsy.handmade";
+
   return (
     <section className="section-padding bg-white overflow-hidden pt-8 pb-16">
       <div className="container mx-auto px-6">
@@ -27,7 +41,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-display text-2xl font-bold text-brand-primary mb-2 tracking-tight">Alamat Workshop</h4>
-                  <p className="text-brand-primary/50 text-lg leading-relaxed">Jl. Mekarwangi No. 21 <br/> Kabupaten Bandung Barat <br/> Jawa Barat 40559</p>
+                  <p className="text-brand-primary/50 text-lg leading-relaxed whitespace-pre-line">{address}</p>
                 </div>
               </div>
 
@@ -37,7 +51,7 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-display text-2xl font-bold text-brand-primary mb-2 tracking-tight">Email & Support</h4>
-                  <p className="text-brand-primary/50 text-lg leading-relaxed">harsy.handmade@gmail.com</p>
+                  <p className="text-brand-primary/50 text-lg leading-relaxed">{email}</p>
                 </div>
               </div>
             </div>
@@ -54,7 +68,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <h3 className="font-display text-3xl md:text-5xl font-black text-brand-primary mb-6 tracking-tighter">Ide Custom?</h3>
                   <p className="text-brand-primary/50 text-lg mb-12 max-w-sm mx-auto leading-relaxed">Konsultasikan desain impianmu langsung via Instagram bersama artisan kami.</p>
-                  <Button size="lg" className="w-full h-16 text-lg shadow-2xl shadow-brand-primary/20" onClick={() => window.open('https://instagram.com/harsy.handmade', '_blank')}>
+                  <Button size="lg" className="w-full h-16 text-lg shadow-2xl shadow-brand-primary/20" onClick={() => window.open(instagram, '_blank')}>
                     Chat via Instagram
                   </Button>
                </div>

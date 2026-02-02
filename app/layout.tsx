@@ -21,12 +21,14 @@ import { Navbar } from "@/components/organisms/Navbar";
 import { Footer } from "@/components/organisms/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
+import { getSiteContent } from "@/lib/services/site-content-service";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteContent = await getSiteContent();
   return (
     <html lang="en" className="scroll-smooth">
       <body
@@ -35,11 +37,11 @@ export default function RootLayout({
       >
         <NextAuthProvider>
           <AuthProvider>
-            <Navbar />
+            <Navbar siteContent={siteContent} />
             <main className="flex-grow">
               {children}
             </main>
-            <Footer />
+            <Footer siteContent={siteContent} />
           </AuthProvider>
         </NextAuthProvider>
       </body>

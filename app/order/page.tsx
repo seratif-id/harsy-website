@@ -4,7 +4,7 @@ import { getProducts } from "@/lib/services/product-service";
 import { OrderFormContent } from "./OrderClient";
 
 export default async function OrderPage() {
-  const products = await getProducts();
+  const { products } = await getProducts();
 
   return (
     <div className="section-padding min-h-screen bg-brand-muted/20 pt-32 pb-16">

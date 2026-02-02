@@ -5,9 +5,15 @@ import { SectionHeader } from "@/components/molecules/SectionHeader";
 import { ProductCard } from "@/components/molecules/ProductCard";
 interface NewProductsProps {
   products: any[];
+  content?: {
+    title: string;
+    subtitle: string;
+  };
 }
 
-export const NewProducts: React.FC<NewProductsProps> = ({ products }) => {
+export const NewProducts: React.FC<NewProductsProps> = ({ products, content }) => {
+  const title = content?.title || "Koleksi Terbaru";
+  const subtitle = content?.subtitle || "Jangan lewatkan produk-produk terbaru kami yang baru saja selesai dirajut dengan penuh cinta.";
   const newProducts = [...products]
     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
     .slice(0, 4);
@@ -18,8 +24,8 @@ export const NewProducts: React.FC<NewProductsProps> = ({ products }) => {
       
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <SectionHeader 
-          title="Koleksi Terbaru" 
-          subtitle="Jangan lewatkan produk-produk terbaru kami yang baru saja selesai dirajut dengan penuh cinta."
+          title={title} 
+          subtitle={subtitle}
           centered
         />
         

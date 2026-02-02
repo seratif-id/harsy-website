@@ -3,7 +3,7 @@ import { getProducts } from "@/lib/services/product-service";
 import { ProductsContent } from "./ProductsClient";
 
 export default async function ProductsPage() {
-  const products = await getProducts();
+  const { products } = await getProducts();
 
   return (
     <div className="min-h-screen mt-32 pb-16">

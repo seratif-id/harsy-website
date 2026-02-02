@@ -12,9 +12,22 @@ export async function getReview(id: string): Promise<Review | undefined> {
   return reviews.find((r) => r.id === id);
 }
 
-export async function getReviewsByProduct(productId: string): Promise<Review[]> {
-    const reviews = await getReviews();
-    return reviews.filter((r) => r.productId === productId);
+export async function getReviewsByProduct(
+  productId: string, 
+  options?: { page?: number; limit?: number }
+): Promise<{ reviews: Review[]; total: number }> {
+    const data = await readData();
+    const allReviews: Review[] = data.reviews || [];
+    const filteredReviews = allReviews.filter((r: Review) => r.productId === productId);
+    const total = filteredReviews.length;
+
+    let reviews = filteredReviews;
+    if (options?.page && options?.limit) {
+      const startIndex = (options.page - 1) * options.limit;
+      reviews = filteredReviews.slice(startIndex, startIndex + options.limit);
+    }
+
+    return { reviews, total };
 }
 
 export async function createReview(review: Omit<Review, 'id' | 'createdAt'>): Promise<Review> {
