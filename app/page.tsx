@@ -21,8 +21,6 @@ export default async function Home() {
       </div>
       <FeaturedProducts products={products} content={siteContent?.featured} />
       <NewProducts products={products} content={siteContent?.newProducts} />
-      <OwnerProfile content={siteContent?.owner} />
-      <AboutSection content={siteContent?.about} />
       <div id="how-to-order">
         <HowToOrder steps={siteContent?.howToOrder?.steps} />
       </div>

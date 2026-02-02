@@ -61,6 +61,9 @@ export interface User {
   roleId?: string; // Link to dynamic role
   avatar?: string;
   password?: string; // For mock auth verification
+  address?: string;
+  city?: string;
+  phone?: string;
 }
 
 export interface OrderItem {
@@ -77,4 +80,9 @@ export interface Order {
   status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
   total: number;
   createdAt: string;
+  shippingAddress?: {
+    address: string;
+    city?: string;
+    postalCode?: string;
+  };
 }

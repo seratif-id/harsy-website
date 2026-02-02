@@ -288,9 +288,25 @@ export const UserList: React.FC<UserListProps> = ({ users }) => {
                     {selectedUser.role}
                 </span>
 
-                <div className="w-full bg-gray-50 rounded-xl p-4 border border-gray-100 text-left mb-6">
-                     <p className="text-xs text-gray-400 uppercase font-bold tracking-widest mb-2">User ID</p>
-                     <p className="font-mono text-sm text-gray-600 bg-white p-2 rounded border border-gray-200">{selectedUser.id}</p>
+                <div className="w-full bg-gray-50 rounded-xl p-4 border border-gray-100 text-left mb-6 space-y-3">
+                     <div>
+                        <p className="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">User ID</p>
+                        <p className="font-mono text-sm text-gray-600 bg-white p-2 rounded border border-gray-200">{selectedUser.id}</p>
+                     </div>
+                     <div>
+                        <p className="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">Address</p>
+                        <p className="text-sm text-gray-800 font-medium">{selectedUser.address || "No address"}</p>
+                     </div>
+                     <div className="flex gap-4">
+                        <div className="flex-1">
+                            <p className="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">City</p>
+                            <p className="text-sm text-gray-800 font-medium">{selectedUser.city || "-"}</p>
+                        </div>
+                        <div className="flex-1">
+                            <p className="text-xs text-gray-400 uppercase font-bold tracking-widest mb-1">Phone</p>
+                            <p className="text-sm text-gray-800 font-medium">{selectedUser.phone || "-"}</p>
+                        </div>
+                     </div>
                 </div>
 
                 <div className="w-full text-left">

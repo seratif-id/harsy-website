@@ -1,11 +1,13 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "../atoms/Button";
 import Image from "next/image";
 import { Instagram } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { UserDropdown } from "../molecules/UserDropdown";
 
 interface NavLink {
   label: string;
@@ -27,8 +29,19 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { isAuthenticated, user } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   
   const navLinks = siteContent?.navbar?.links || [
     { label: "Beranda", href: "/" },
@@ -42,6 +55,9 @@ export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
     tagline: "Handmade",
     image: "/logo.png"
   };
+
+  // Hide Navbar on admin pages
+  if (pathname?.startsWith("/admin")) return null;
 
   return (
     <>
@@ -68,9 +84,13 @@ export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-secondary group-hover/link:w-full transition-all duration-300" />
               </Link>
             ))}
-            <Button variant="primary" size="sm" className="shadow-brand-primary/20" onClick={() => window.location.href='/order'}>
-              Pesan Sekarang
-            </Button>
+            {isAuthenticated && user ? (
+               <UserDropdown user={user} />
+            ) : (
+                <Button variant="primary" size="sm" className="shadow-brand-primary/20" onClick={() => router.push("/login")}>
+                  Masuk
+                </Button>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -105,16 +125,33 @@ export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
               </Link>
             ))}
             <div className="h-px bg-brand-primary/5 my-4" />
-            <Button 
-              size="lg" 
-              className="w-full h-16 text-md shadow-2xl shadow-brand-primary/20"
-              onClick={() => {
-                setIsMenuOpen(false);
-                window.location.href='/order';
-              }}
-            >
-              Pesan Sekarang
-            </Button>
+            {isAuthenticated ? (
+               <div className="flex flex-col gap-4">
+                  <Button size="lg" className="w-full h-16 text-md shadow-2xl shadow-brand-primary/20" onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/profile");
+                  }}>
+                    Profile User
+                  </Button>
+                   <Button variant="ghost" size="lg" className="w-full h-16 text-md border-2 border-brand-primary/10" onClick={() => {
+                      setIsMenuOpen(false);
+                      router.push("/history");
+                  }}>
+                    History Order
+                  </Button>
+               </div>
+            ) : (
+                <Button 
+                  size="lg" 
+                  className="w-full h-16 text-md shadow-2xl shadow-brand-primary/20"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    router.push("/login");
+                  }}
+                >
+                  Masuk
+                </Button>
+            )}
             
             <div className="mt-auto pt-20">
               <p className="text-[10px] font-bold text-brand-primary/30 uppercase tracking-[0.2em] mb-4">Ikuti Kami</p>

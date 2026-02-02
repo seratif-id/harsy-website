@@ -11,6 +11,8 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ siteContent }) => {
   const pathname = usePathname();
   
+  if (pathname?.startsWith("/admin")) return null;
+
   const siteData = siteContent || {};
   const footerTagline = siteData.footer?.tagline || "Mewujudkan imajinasi menjadi rajutan tangan yang penuh cinta dan kehangatan untuk Anda dan si buah hati.";
   const contact = siteData.contact || {

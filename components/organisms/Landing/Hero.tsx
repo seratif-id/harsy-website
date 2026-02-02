@@ -11,15 +11,21 @@ interface HeroProps {
     customerCount: string;
     customerLabel: string;
     image: string;
+    happyCustomers?: {
+        count: string;
+        label: string;
+        images: string[];
+    };
   };
 }
 
 export const Hero: React.FC<HeroProps> = ({ content }) => {
   const title = content?.title || "Seni Rajut Tanpa Batas";
   const subtitle = content?.subtitle || "Menghadirkan kehangatan dalam setiap simpul rajutan untuk menemani tumbuh kembang si buah hati.";
-  const customerCount = content?.customerCount || "1,200+";
-  const customerLabel = content?.customerLabel || "Pelanggan Bahagia";
+  const customerCount = content?.happyCustomers?.count || content?.customerCount || "1,200+";
+  const customerLabel = content?.happyCustomers?.label || content?.customerLabel || "Pelanggan Bahagia";
   const imageSrc = content?.image || "/sampleImage/heroImg.png";
+  const customerImages = content?.happyCustomers?.images || [];
 
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-brand-muted/30">
@@ -55,13 +61,21 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
               </Button>
             </div>
             
-            <div className="mt-16 flex items-center gap-6 p-4 rounded-3xl bg-white/50 border border-brand-primary/5 backdrop-blur-sm">
+            <div className="mt-16 flex items-center gap-6 p-4 backdrop-blur-sm">
               <div className="flex -space-x-4">
-                {[1,2,3].map(i => (
-                  <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white bg-brand-muted flex items-center justify-center overflow-hidden shadow-sm">
-                    <span className="text-[10px] text-brand-primary/20 font-black italic">H</span>
-                  </div>
-                ))}
+                {customerImages.length > 0 ? (
+                  customerImages.map((img, i) => (
+                    <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white bg-brand-muted flex items-center justify-center overflow-hidden shadow-sm relative">
+                       <Image src={img} alt="Customer" fill className="object-cover" />
+                    </div>
+                  ))
+                ) : (
+                  [1,2,3].map(i => (
+                    <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white bg-brand-muted flex items-center justify-center overflow-hidden shadow-sm">
+                      <span className="text-[10px] text-brand-primary/20 font-black italic">H</span>
+                    </div>
+                  ))
+                )}
               </div>
               <div className="flex flex-col">
                 <span className="text-brand-primary font-black text-lg leading-none">{customerCount}</span>

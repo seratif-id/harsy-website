@@ -39,14 +39,17 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
         if (user) {
             token.role = (user as any).role;
+            token.roleId = (user as any).roleId;
         }
         return token;
     },
     async session({ session, token }) {
         if (session.user) {
             (session.user as any).role = token.role;
+            (session.user as any).roleId = token.roleId;
         }
         return session;
     }
-  }
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };

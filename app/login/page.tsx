@@ -30,7 +30,16 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Email atau kata sandi salah");
       } else {
-        router.push("/admin"); // Or dynamic based on role, but generally to home or admin
+        // Fetch session to check role
+        const res = await fetch("/api/auth/session");
+        const session = await res.json();
+        
+        if (session?.user?.roleId === "role-user") {
+          router.push("/");
+          router.refresh();
+        } else {
+          router.push("/admin");
+        }
       }
     } catch (err) {
       setError("Terjadi kesalahan saat masuk");

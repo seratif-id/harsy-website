@@ -352,6 +352,21 @@ export const OrderList: React.FC<OrderListProps> = ({ orders, users, products })
                              )}
                         </div>
                     </div>
+                    
+                    {/* Shipping Address */}
+                    <div>
+                        <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                           <span className="w-1 h-5 bg-brand-primary rounded-full"></span>
+                           Shipping Address
+                        </h4>
+                        <div className="bg-white border border-gray-200 rounded-xl p-4">
+                           <p className="text-gray-700 leading-relaxed">
+                              {selectedOrder.shippingAddress?.address || "No address provided"}
+                              {selectedOrder.shippingAddress?.city && `, ${selectedOrder.shippingAddress.city}`}
+                              {selectedOrder.shippingAddress?.postalCode && ` ${selectedOrder.shippingAddress.postalCode}`}
+                           </p>
+                        </div>
+                    </div>
 
                     {/* Order Items */}
                     <div>

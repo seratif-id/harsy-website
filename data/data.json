@@ -455,7 +455,10 @@
       "role": "admin",
       "roleId": "role-admin",
       "avatar": "/avatars/admin.jpg",
-      "password": "adminpassword1"
+      "password": "adminpassword1",
+      "address": "Jl. Kuta Beach Resort 5B",
+      "city": "Badung",
+      "phone": "089876543210"
     },
     {
       "id": "u3",
@@ -2230,7 +2233,16 @@
       "subtitle": "Menghadirkan kehangatan dalam setiap simpul rajutan untuk menemani tumbuh kembang si buah hati.",
       "customerCount": "1,200+",
       "customerLabel": "Pelanggan Bahagia",
-      "image": "/sampleImage/heroImg.png"
+      "image": "/sampleImage/heroImg.png",
+      "happyCustomers": {
+        "count": "1,200+",
+        "label": "Pelanggan Bahagia",
+        "images": [
+           "/avatars/user-1.jpg",
+           "/avatars/user-2.jpg",
+           "/avatars/user-3.jpg"
+        ]
+      }
     },
     "about": {
       "story": {

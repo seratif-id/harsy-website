@@ -9,6 +9,8 @@ import { ImagePlaceholder } from "@/components/atoms/ImagePlaceholder";
 import { getProductBadges } from "@/utils/badge";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Product, Review, User } from "@/lib/types";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 
 interface ProductDetailClientProps {
@@ -19,6 +21,8 @@ interface ProductDetailClientProps {
   }
   
   export function ProductDetailClient({ product, allProducts, reviews, users }: ProductDetailClientProps) {
+    const router = useRouter();
+    const { isAuthenticated } = useAuth();
     const customizationParts = (product.partitions && product.partitions.length > 0)
       ? product.partitions.map(p => ({
           name: p.name,
@@ -178,11 +182,19 @@ interface ProductDetailClientProps {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-brand-primary/5 mt-auto pb-6">
-              <Link href={`/order?slug=${product.slug}&${new URLSearchParams(selections).toString()}`} className="flex-grow">
-                <Button size="lg" className="w-full h-14 text-base font-black shadow-lg shadow-brand-primary/20 rounded-xl">
-                  Mulai Pesanan Custom
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="flex-grow h-14 text-base font-black shadow-lg shadow-brand-primary/20 rounded-xl"
+                onClick={() => {
+                  if (isAuthenticated) {
+                    router.push(`/order?slug=${product.slug}&${new URLSearchParams(selections).toString()}`);
+                  } else {
+                    router.push("/login");
+                  }
+                }}
+              >
+                Mulai Pesanan Custom
+              </Button>
               <Button variant="ghost" size="lg" className="h-14 px-6 border-2 border-brand-primary/5 hover:border-brand-primary/10 rounded-xl">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 100-5.368 3 3 0 000 5.368zm0 7.105a3 3 0 100 5.368 3 3 0 000-5.368z"></path></svg>
               </Button>
