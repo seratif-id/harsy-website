@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Upload, X } from "lucide-react";
 import Image from "next/image";
-import { Product } from "@/lib/types";
-import { CATEGORIES } from "@/lib/data";
+import { Product, Category } from "@/lib/types";
 
 interface ProductFormProps {
   initialData?: Product;
@@ -32,6 +31,22 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, isEdit = 
     }
   );
   const [error, setError] = useState("");
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+        try {
+            const res = await fetch("/api/categories");
+            if (res.ok) {
+                const data = await res.json();
+                setCategories(data);
+            }
+        } catch (error) {
+            console.error("Failed to fetch categories:", error);
+        }
+    };
+    fetchCategories();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -149,7 +164,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, isEdit = 
     }
   };
 
-  const selectedCategory = CATEGORIES.find(c => c.slug === formData.category);
+  const selectedCategory = categories.find(c => c.slug === formData.category);
 
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-6">
@@ -193,7 +208,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, isEdit = 
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary"
             >
-              {CATEGORIES.map(cat => (
+              {categories.map(cat => (
                   <option key={cat.id} value={cat.slug}>{cat.name}</option>
               ))}
             </select>

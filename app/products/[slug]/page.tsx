@@ -1,5 +1,7 @@
 import React from "react";
 import { getProducts } from "@/lib/services/product-service";
+import { getReviewsByProduct } from "@/lib/services/review-service";
+import { getUsers } from "@/lib/services/user-service";
 import { notFound } from "next/navigation";
 import { ProductDetailClient } from "./ProductDetailClient";
 
@@ -16,5 +18,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  return <ProductDetailClient product={product} allProducts={products} />;
+  const reviews = await getReviewsByProduct(product.id);
+  const users = await getUsers();
+
+  return <ProductDetailClient product={product} allProducts={products} reviews={reviews} users={users} />;
 }

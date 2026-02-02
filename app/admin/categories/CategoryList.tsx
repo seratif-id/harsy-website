@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Pencil, Trash2, Search } from "lucide-react";
+import { Pencil, Trash2, Search, ChevronUp, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { Category } from "@/lib/types";
 import { useRouter } from "next/navigation";
+import { useSortableData } from "@/utils/hooks/useSortableData";
+import { SortableHeader } from "@/components/molecules/SortableHeader";
 
 interface CategoryListProps {
   categories: Category[];
@@ -15,10 +17,27 @@ export const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const filteredCategories = categories.filter(category => 
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Reset to first page when search changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
+  const { items: sortedCategories, requestSort, sortConfig } = useSortableData(filteredCategories);
+
+  // Pagination Logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = sortedCategories.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(sortedCategories.length / itemsPerPage);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this category?")) return;
@@ -62,14 +81,14 @@ export const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
           <thead className="text-xs text-gray-500 uppercase bg-gray-50 border-b border-gray-200">
             <tr>
               <th className="px-6 py-3 font-medium">Image</th>
-              <th className="px-6 py-3 font-medium">Name</th>
-              <th className="px-6 py-3 font-medium">Slug</th>
+              <SortableHeader label="Name" sortKey="name" currentSort={sortConfig} onSort={requestSort} />
+              <SortableHeader label="Slug" sortKey="slug" currentSort={sortConfig} onSort={requestSort} />
               <th className="px-6 py-3 font-medium text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {filteredCategories.length > 0 ? (
-              filteredCategories.map((category) => (
+            {currentItems.length > 0 ? (
+              currentItems.map((category) => (
                 <tr key={category.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-gray-200 bg-gray-100">
@@ -111,6 +130,50 @@ export const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
           </tbody>
         </table>
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
+            <div className="text-sm text-gray-500">
+                Showing <span className="font-medium text-gray-900">{indexOfFirstItem + 1}</span> to <span className="font-medium text-gray-900">{Math.min(indexOfLastItem, sortedCategories.length)}</span> of <span className="font-medium text-gray-900">{sortedCategories.length}</span> results
+            </div>
+            <div className="flex items-center gap-1">
+                <button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="p-2 rounded-lg text-gray-500 hover:bg-white hover:text-brand-primary disabled:opacity-30 disabled:hover:bg-transparent transition-all border border-transparent hover:border-gray-200"
+                >
+                    <ChevronUp className="w-5 h-5 -rotate-90" />
+                </button>
+                
+                <div className="flex items-center gap-1 mx-2">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                            key={page}
+                            onClick={() => paginate(page)}
+                            className={`
+                                w-8 h-8 rounded-lg text-xs font-bold transition-all border
+                                ${currentPage === page 
+                                    ? 'bg-brand-primary text-white border-brand-primary shadow-sm' 
+                                    : 'bg-white text-gray-600 border-transparent hover:border-gray-200 hover:text-brand-primary'
+                                }
+                            `}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
+
+                <button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="p-2 rounded-lg text-gray-500 hover:bg-white hover:text-brand-primary disabled:opacity-30 disabled:hover:bg-transparent transition-all border border-transparent hover:border-gray-200"
+                >
+                    <ChevronDown className="w-5 h-5 -rotate-90" />
+                </button>
+            </div>
+        </div>
+      )}
     </div>
   );
 };

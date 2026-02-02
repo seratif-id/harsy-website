@@ -25,6 +25,7 @@ export interface Review {
   id: string;
   productId: string;
   userId: string;
+  orderId?: string; // Link to the order this review is for
   rating: number;
   comment: string;
   createdAt: string;
@@ -60,4 +61,20 @@ export interface User {
   roleId?: string; // Link to dynamic role
   avatar?: string;
   password?: string; // For mock auth verification
+}
+
+export interface OrderItem {
+  productId: string;
+  quantity: number;
+  price: number;
+  selectedVariants?: Record<string, string>;
+}
+
+export interface Order {
+  id: string;
+  userId: string;
+  items: OrderItem[];
+  status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+  total: number;
+  createdAt: string;
 }

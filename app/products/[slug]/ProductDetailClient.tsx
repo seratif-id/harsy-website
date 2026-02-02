@@ -7,29 +7,36 @@ import Link from "next/link";
 import Image from "next/image";
 import { ImagePlaceholder } from "@/components/atoms/ImagePlaceholder";
 import { getProductBadges } from "@/utils/badge";
-import { Product } from "@/lib/types";
-import { REVIEWS, USERS } from "@/lib/data";
+import { Product, Review, User } from "@/lib/types";
+
 
 interface ProductDetailClientProps {
-  product: Product;
-  allProducts: Product[];
-}
-
-export function ProductDetailClient({ product, allProducts }: ProductDetailClientProps) {
-  const customizationParts = product.category === "boneka" 
-    ? [
-        { name: "Warna Badan", options: ["Cream", "Coklat", "Putih", "Pink"] },
-        { name: "Warna Mata", options: ["Hitam", "Biru", "Coklat"] },
-        { name: "Warna Sepatu", options: ["Merah", "Kuning", "Hijau"] }
-      ]
-    : product.category === "tas"
-    ? [
-        { name: "Warna Tas", options: ["Sky Blue", "Lavender", "Beige", "Black"] },
-        { name: "Warna Tali", options: ["Sesuai Tas", "Putih", "Coklat"] }
-      ]
-    : [
-        { name: "Warna Utama", options: ["Warna 1", "Warna 2", "Warna 3"] }
-      ];
+    product: Product;
+    allProducts: Product[];
+    reviews: Review[];
+    users: User[];
+  }
+  
+  export function ProductDetailClient({ product, allProducts, reviews, users }: ProductDetailClientProps) {
+    const customizationParts = (product.partitions && product.partitions.length > 0)
+      ? product.partitions.map(p => ({
+          name: p.name,
+          options: p.colors
+        }))
+      : product.category === "boneka" 
+      ? [
+          { name: "Warna Badan", options: ["Cream", "Coklat", "Putih", "Pink"] },
+          { name: "Warna Mata", options: ["Hitam", "Biru", "Coklat"] },
+          { name: "Warna Sepatu", options: ["Merah", "Kuning", "Hijau"] }
+        ]
+      : product.category === "tas"
+      ? [
+          { name: "Warna Tas", options: ["Sky Blue", "Lavender", "Beige", "Black"] },
+          { name: "Warna Tali", options: ["Sesuai Tas", "Putih", "Coklat"] }
+        ]
+      : [
+          { name: "Warna Utama", options: product.colors?.length ? product.colors : ["Warna 1", "Warna 2", "Warna 3"] }
+        ];
 
   const [selections, setSelections] = useState<Record<string, string>>(
     Object.fromEntries(customizationParts.map(p => [p.name, p.options[0]]))
@@ -187,9 +194,7 @@ export function ProductDetailClient({ product, allProducts }: ProductDetailClien
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {(() => {
-                  const productReviews = REVIEWS.filter(r => r.productId === product.id);
-                  
-                  if (productReviews.length === 0) {
+                  if (reviews.length === 0) {
                       return (
                           <div className="col-span-full text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
                              <p className="text-gray-400 font-medium">Belum ada ulasan untuk produk ini.</p>
@@ -197,8 +202,8 @@ export function ProductDetailClient({ product, allProducts }: ProductDetailClien
                       );
                   }
 
-                  return productReviews.map((review) => {
-                    const user = USERS.find(u => u.id === review.userId);
+                  return reviews.map((review) => {
+                    const user = users.find(u => u.id === review.userId);
                     return (
                       <div key={review.id} className="bg-white p-6 rounded-[2rem] shadow-lg shadow-brand-primary/5 border border-brand-primary/5 group hover:-translate-y-2 transition-all duration-500">
                         <div className="flex items-center gap-4 mb-6">

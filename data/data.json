@@ -37,12 +37,31 @@
         "/sampleImage/imgAcc1.png"
       ],
       "category": "aksesoris",
-      "rating": 5.0,
-      "sold": 100,
-      "reviewCount": 50,
+      "rating": 4.4,
+      "sold": 8,
+      "reviewCount": 18,
       "estimatedTime": "3-4 hari",
       "updatedAt": "2024-01-25T10:00:00Z",
-      "description": "There are many ways to expressing your love to someone or something that you love. They may not phisically close but love knows no boundaries. You can admiring them through their picture, song, or something that you can bring along with you, yes bag charm."
+      "description": "There are many ways to expressing your love to someone or something that you love. They may not phisically close but love knows no boundaries. You can admiring them through their picture, song, or something that you can bring along with you, yes bag charm.",
+      "partitions": [
+        {
+          "name": "Character",
+          "colors": [
+            "Cooky",
+            "Tata",
+            "Chimmy",
+            "Koya"
+          ]
+        },
+        {
+          "name": "Strap",
+          "colors": [
+            "Black",
+            "Purple",
+            "Pink"
+          ]
+        }
+      ]
     },
     {
       "id": "p2",
@@ -58,12 +77,29 @@
         "/sampleImage/catBag.png"
       ],
       "category": "tas",
-      "rating": 4.0,
-      "sold": 10,
-      "reviewCount": 15,
+      "rating": 4.8,
+      "sold": 17,
+      "reviewCount": 9,
       "estimatedTime": "5-7 hari",
       "updatedAt": "2024-01-24T10:00:00Z",
-      "description": "Tas selempang dengan warna pastel yang manis."
+      "description": "Tas selempang dengan warna pastel yang manis.",
+      "partitions": [
+        {
+          "name": "Main Body",
+          "colors": [
+            "Pastel Pink",
+            "Pastel Blue",
+            "Lilac"
+          ]
+        },
+        {
+          "name": "Strap",
+          "colors": [
+            "White",
+            "Beige"
+          ]
+        }
+      ]
     },
     {
       "id": "p3",
@@ -79,12 +115,29 @@
         "/sampleImage/imgDoll1.png"
       ],
       "category": "boneka",
-      "rating": 5.0,
-      "sold": 10,
-      "reviewCount": 30,
+      "rating": 4.5,
+      "sold": 11,
+      "reviewCount": 8,
       "estimatedTime": "1-2 hari",
       "updatedAt": "2024-01-23T10:00:00Z",
-      "description": "A calming color palette: beige, broken white, and earthy brown, with the softness of cotton, meet in this adorable deer. He is ready to be a new friend or the perfect baby gift!"
+      "description": "A calming color palette: beige, broken white, and earthy brown, with the softness of cotton, meet in this adorable deer. He is ready to be a new friend or the perfect baby gift!",
+      "partitions": [
+        {
+          "name": "Body",
+          "colors": [
+            "Beige",
+            "Brown"
+          ]
+        },
+        {
+          "name": "Scarf",
+          "colors": [
+            "Red",
+            "Green",
+            "Yellow"
+          ]
+        }
+      ]
     },
     {
       "id": "p4",
@@ -100,12 +153,113 @@
         "/sampleImage/imgDoll2.png"
       ],
       "category": "boneka",
-      "rating": 4.0,
-      "sold": 100,
-      "reviewCount": 20,
+      "rating": 4.3,
+      "sold": 13,
+      "reviewCount": 12,
       "estimatedTime": "1-2 hari",
       "updatedAt": "2024-01-22T10:00:00Z",
-      "description": "The warm milky brown bunny pairs perfectly with the cool mint overalls. This blend of beige and pastel mint colors complement each other beautifully, accentuating every intricate detail of the crochet work."
+      "description": "The warm milky brown bunny pairs perfectly with the cool mint overalls. This blend of beige and pastel mint colors complement each other beautifully, accentuating every intricate detail of the crochet work.",
+      "partitions": [
+        {
+          "name": "Body",
+          "colors": [
+            "Milky Brown",
+            "White"
+          ]
+        },
+        {
+          "name": "Overalls",
+          "colors": [
+            "Mint",
+            "Blue",
+            "Pink"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "name": "Classic Tote Bag Canvas",
+      "slug": "classic-tote-bag-canvas",
+      "price": 150000,
+      "originalPrice": 200000,
+      "image": [
+        "/sampleImage/catBag.png",
+        "/sampleImage/catBag.png",
+        "/sampleImage/catBag.png"
+      ],
+      "category": "tas",
+      "rating": 4.4,
+      "sold": 16,
+      "reviewCount": 8,
+      "estimatedTime": "2-3 hari",
+      "updatedAt": "2024-02-05T10:00:00Z",
+      "description": "Tas tote bag kanvas yang kuat dan stylish. Cocok untuk kuliah atau jalan-jalan santai dengan kapasitas besar.",
+      "partitions": [
+        {
+          "name": "Canvas Color",
+          "colors": [
+            "Black",
+            "White",
+            "Navy",
+            "Army"
+          ]
+        },
+        {
+          "name": "Handle Color",
+          "colors": [
+            "Leather Brown",
+            "Black",
+            "Cream"
+          ]
+        },
+        {
+          "name": "Zipper",
+          "colors": [
+            "Yes",
+            "No"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "name": "Dino Keychain Amigurumi",
+      "slug": "dino-keychain-amigurumi",
+      "price": 35000,
+      "originalPrice": 50000,
+      "image": [
+        "/sampleImage/imgAcc1.png",
+        "/sampleImage/imgAcc1.png",
+        "/sampleImage/imgAcc1.png"
+      ],
+      "category": "aksesoris",
+      "rating": 4.8,
+      "sold": 17,
+      "reviewCount": 12,
+      "estimatedTime": "1 hari",
+      "updatedAt": "2024-02-04T15:00:00Z",
+      "description": "Gantungan kunci bentuk Dino yang super gemas! Bisa request warna sesuka hati.",
+      "partitions": [
+        {
+          "name": "Dino Color",
+          "colors": [
+            "Green",
+            "Blue",
+            "Pink",
+            "Yellow",
+            "Purple"
+          ]
+        },
+        {
+          "name": "Ring Type",
+          "colors": [
+            "Gold Premium",
+            "Silver Standard",
+            "Ball Chain"
+          ]
+        }
+      ]
     }
   ],
   "roles": [
@@ -113,16 +267,47 @@
       "id": "role-admin",
       "name": "Super Admin",
       "permissions": [
-        "product.view", "product.create", "product.edit", "product.delete",
-        "category.view", "category.create", "category.edit", "category.delete",
-        "user.view", "user.create", "user.edit", "user.delete",
-        "role.view", "role.create", "role.edit", "role.delete"
+        "product.view",
+        "product.create",
+        "product.edit",
+        "product.delete",
+        "category.view",
+        "category.create",
+        "category.edit",
+        "category.delete",
+        "user.view",
+        "user.create",
+        "user.edit",
+        "user.delete",
+        "role.view",
+        "role.create",
+        "role.edit",
+        "role.delete"
+      ]
+    },
+    {
+      "id": "role-manager",
+      "name": "Store Manager",
+      "permissions": [
+        "product.view",
+        "product.create",
+        "product.edit",
+        "category.view",
+        "order.view",
+        "order.edit",
+        "review.view"
       ]
     },
     {
       "id": "role-user",
       "name": "Customer",
-      "permissions": ["product.view", "category.view"]
+      "permissions": [
+        "product.view",
+        "category.view",
+        "order.history",
+        "review.submit",
+        "profile.edit"
+      ]
     }
   ],
   "users": [
@@ -143,6 +328,1759 @@
       "roleId": "role-admin",
       "avatar": "/avatars/admin.jpg",
       "password": "adminpassword1"
+    },
+    {
+      "id": "u3",
+      "name": "Dewi Setiawan",
+      "email": "dewi.setiawan167@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-1.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u4",
+      "name": "Kartika Siregar",
+      "email": "kartika.siregar530@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-2.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u5",
+      "name": "Rina Nugroho",
+      "email": "rina.nugroho121@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-3.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u6",
+      "name": "Eko Pratama",
+      "email": "eko.pratama398@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-4.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u7",
+      "name": "Budi Setiawan",
+      "email": "budi.setiawan264@example.com",
+      "role": "user",
+      "roleId": "role-manager",
+      "avatar": "/avatars/user-5.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u8",
+      "name": "Hana Haryanto",
+      "email": "hana.haryanto706@example.com",
+      "role": "user",
+      "roleId": "role-manager",
+      "avatar": "/avatars/user-1.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u9",
+      "name": "Dewi Hidayat",
+      "email": "dewi.hidayat267@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-2.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u10",
+      "name": "Indra Wijaya",
+      "email": "indra.wijaya434@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-3.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u11",
+      "name": "Nina Saputra",
+      "email": "nina.saputra905@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-4.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u12",
+      "name": "Yudi Rahayu",
+      "email": "yudi.rahayu261@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-5.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u13",
+      "name": "Nina Pertiwi",
+      "email": "nina.pertiwi716@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-1.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u14",
+      "name": "Mira Wibowo",
+      "email": "mira.wibowo373@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-2.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u15",
+      "name": "Citra Lestari",
+      "email": "citra.lestari393@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-3.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u16",
+      "name": "Dewi Kurniawan",
+      "email": "dewi.kurniawan893@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-4.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u17",
+      "name": "Fajar Saputra",
+      "email": "fajar.saputra435@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-5.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u18",
+      "name": "Tono Anggraini",
+      "email": "tono.anggraini149@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-1.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u19",
+      "name": "Gita Utami",
+      "email": "gita.utami532@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-2.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u20",
+      "name": "Gita Wibowo",
+      "email": "gita.wibowo943@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-3.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u21",
+      "name": "Sari Saputra",
+      "email": "sari.saputra0@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-4.jpg",
+      "password": "password123"
+    },
+    {
+      "id": "u22",
+      "name": "Budi Pratama",
+      "email": "budi.pratama338@example.com",
+      "role": "user",
+      "roleId": "role-user",
+      "avatar": "/avatars/user-5.jpg",
+      "password": "password123"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "r1",
+      "productId": "p1",
+      "userId": "u1",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Bagus banget! Kualitas rajutannya rapi dan kokoh. Suka banget sama karakter Cooky-nya.",
+      "createdAt": "2024-02-01T10:00:00Z"
+    },
+    {
+      "id": "r2",
+      "productId": "p1",
+      "userId": "u2",
+      "orderId": "o2",
+      "rating": 4,
+      "comment": "Lucu, tapi pengirimannya agak lama. Overall oke.",
+      "createdAt": "2024-01-30T14:30:00Z"
+    },
+    {
+      "id": "r3",
+      "productId": "p3",
+      "userId": "u1",
+      "orderId": "o3",
+      "rating": 5,
+      "comment": "Boneka rusanya gemes banget! Bahannya lembut, cocok buat kado anak.",
+      "createdAt": "2024-01-25T09:15:00Z"
+    },
+    {
+      "id": "r4",
+      "productId": "p2",
+      "userId": "u1",
+      "orderId": "o4",
+      "rating": 5,
+      "comment": "Tasnya cantik, warnanya pastel soft banget. Muat banyak barang juga ternyata.",
+      "createdAt": "2024-01-20T11:20:00Z"
+    },
+    {
+      "id": "r5",
+      "productId": "p4",
+      "userId": "u2",
+      "orderId": "o5",
+      "rating": 3,
+      "comment": "Agak beda sama di foto warnanya, tapi tetep lucu sih.",
+      "createdAt": "2024-01-15T16:45:00Z"
+    },
+    {
+      "id": "r6",
+      "productId": "p5",
+      "userId": "u1",
+      "orderId": "o6",
+      "rating": 5,
+      "comment": "Tote bag kanvasnya beneran muat laptop! Bahannya tebal tapi ringan. Suka banget!",
+      "createdAt": "2024-02-06T09:00:00Z"
+    },
+    {
+      "id": "r7",
+      "productId": "p6",
+      "userId": "u2",
+      "orderId": "o7",
+      "rating": 5,
+      "comment": "Dino nya gemoy parah! Ekur nya lucu. Recommended buat gantungan kunci tas.",
+      "createdAt": "2024-02-05T18:30:00Z"
+    },
+    {
+      "id": "r1770038968663_0",
+      "productId": "p5",
+      "userId": "u5",
+      "orderId": "o3",
+      "rating": 4,
+      "comment": "Warna sedikit beda dari foto, tapi tetep bagus.",
+      "createdAt": "2025-11-18T11:08:29.576Z"
+    },
+    {
+      "id": "r1770038968663_1",
+      "productId": "p1",
+      "userId": "u13",
+      "orderId": "o27",
+      "rating": 4,
+      "comment": "Agak lama sampainya, tapi barang aman.",
+      "createdAt": "2025-12-05T08:41:55.445Z"
+    },
+    {
+      "id": "r1770038968663_2",
+      "productId": "p1",
+      "userId": "u9",
+      "orderId": "o18",
+      "rating": 4,
+      "comment": "Lucu banget bonekanya, jahitan rapi.",
+      "createdAt": "2025-11-25T15:18:54.825Z"
+    },
+    {
+      "id": "r1770038968663_3",
+      "productId": "p4",
+      "userId": "u7",
+      "orderId": "o13",
+      "rating": 4,
+      "comment": "Warna sedikit beda dari foto, tapi tetep bagus.",
+      "createdAt": "2025-11-29T16:18:58.643Z"
+    },
+    {
+      "id": "r1770038968663_4",
+      "productId": "p3",
+      "userId": "u7",
+      "orderId": "o13",
+      "rating": 4,
+      "comment": "Beli buat kado, yang dikasih seneng banget.",
+      "createdAt": "2026-01-07T00:36:02.036Z"
+    },
+    {
+      "id": "r1770038968663_5",
+      "productId": "p6",
+      "userId": "u7",
+      "orderId": "o14",
+      "rating": 5,
+      "comment": "Respon penjual cepat dan ramah.",
+      "createdAt": "2025-12-10T14:35:12.230Z"
+    },
+    {
+      "id": "r1770038968663_6",
+      "productId": "p1",
+      "userId": "u21",
+      "orderId": "o28",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2025-12-03T21:22:02.824Z"
+    },
+    {
+      "id": "r1770038968663_7",
+      "productId": "p6",
+      "userId": "u20",
+      "orderId": "o33",
+      "rating": 5,
+      "comment": "Recommended seller!",
+      "createdAt": "2025-12-11T22:09:35.473Z"
+    },
+    {
+      "id": "r1770038968663_8",
+      "productId": "p4",
+      "userId": "u12",
+      "orderId": "o22",
+      "rating": 4,
+      "comment": "Suka banget sama warnanya!",
+      "createdAt": "2025-10-23T18:06:40.314Z"
+    },
+    {
+      "id": "r1770038968663_9",
+      "productId": "p4",
+      "userId": "u8",
+      "orderId": "o15",
+      "rating": 4,
+      "comment": "Beli buat kado, yang dikasih seneng banget.",
+      "createdAt": "2025-12-15T19:41:13.235Z"
+    },
+    {
+      "id": "r1770038968664_10",
+      "productId": "p3",
+      "userId": "u20",
+      "orderId": "o39",
+      "rating": 4,
+      "comment": "Produk original, mantap.",
+      "createdAt": "2026-01-24T11:32:26.964Z"
+    },
+    {
+      "id": "r1770038968664_11",
+      "productId": "p2",
+      "userId": "u22",
+      "orderId": "o28",
+      "rating": 4,
+      "comment": "Aksesorisnya unik, jarang ada yang nyamain.",
+      "createdAt": "2025-11-15T06:24:29.891Z"
+    },
+    {
+      "id": "r1770038968664_12",
+      "productId": "p1",
+      "userId": "u19",
+      "orderId": "o27",
+      "rating": 5,
+      "comment": "Suka banget sama warnanya!",
+      "createdAt": "2025-12-16T14:42:04.047Z"
+    },
+    {
+      "id": "r1770038968664_13",
+      "productId": "p4",
+      "userId": "u16",
+      "orderId": "o30",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2025-10-17T15:22:35.474Z"
+    },
+    {
+      "id": "r1770038968664_14",
+      "productId": "p1",
+      "userId": "u3",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Lucu banget bonekanya, jahitan rapi.",
+      "createdAt": "2025-11-09T06:34:34.751Z"
+    },
+    {
+      "id": "r1770038968664_15",
+      "productId": "p6",
+      "userId": "u14",
+      "orderId": "o26",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2026-01-08T06:20:31.488Z"
+    },
+    {
+      "id": "r1770038968664_16",
+      "productId": "p5",
+      "userId": "u18",
+      "orderId": "o33",
+      "rating": 4,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2026-01-25T00:51:45.818Z"
+    },
+    {
+      "id": "r1770038968664_17",
+      "productId": "p4",
+      "userId": "u8",
+      "orderId": "o15",
+      "rating": 5,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2026-01-22T00:10:09.736Z"
+    },
+    {
+      "id": "r1770038968664_18",
+      "productId": "p2",
+      "userId": "u17",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Agak lama sampainya, tapi barang aman.",
+      "createdAt": "2025-11-09T19:18:48.532Z"
+    },
+    {
+      "id": "r1770038968664_19",
+      "productId": "p6",
+      "userId": "u7",
+      "orderId": "o4",
+      "rating": 5,
+      "comment": "Recommended seller!",
+      "createdAt": "2026-02-01T22:31:07.734Z"
+    },
+    {
+      "id": "r1770038968664_20",
+      "productId": "p3",
+      "userId": "u14",
+      "orderId": "o7",
+      "rating": 5,
+      "comment": "Produk original, mantap.",
+      "createdAt": "2025-10-25T16:11:36.323Z"
+    },
+    {
+      "id": "r1770038968664_21",
+      "productId": "p4",
+      "userId": "u11",
+      "orderId": "o19",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2025-12-15T13:48:00.421Z"
+    },
+    {
+      "id": "r1770038968664_22",
+      "productId": "p1",
+      "userId": "u15",
+      "orderId": "o28",
+      "rating": 5,
+      "comment": "Barang bagus, sesuai deskripsi.",
+      "createdAt": "2026-01-10T15:04:22.733Z"
+    },
+    {
+      "id": "r1770038968664_23",
+      "productId": "p4",
+      "userId": "u6",
+      "orderId": "o7",
+      "rating": 4,
+      "comment": "Suka banget sama warnanya!",
+      "createdAt": "2025-11-06T11:25:25.960Z"
+    },
+    {
+      "id": "r1770038968664_24",
+      "productId": "p5",
+      "userId": "u15",
+      "orderId": "o27",
+      "rating": 4,
+      "comment": "Respon penjual cepat dan ramah.",
+      "createdAt": "2025-12-15T13:05:46.219Z"
+    },
+    {
+      "id": "r1770038968664_25",
+      "productId": "p2",
+      "userId": "u20",
+      "orderId": "o32",
+      "rating": 5,
+      "comment": "Kualitas oke banget untuk harga segini.",
+      "createdAt": "2026-01-02T07:13:46.031Z"
+    },
+    {
+      "id": "r1770038968664_26",
+      "productId": "p1",
+      "userId": "u3",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2025-10-14T00:44:28.175Z"
+    },
+    {
+      "id": "r1770038968664_27",
+      "productId": "p1",
+      "userId": "u20",
+      "orderId": "o27",
+      "rating": 4,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2026-01-09T12:40:40.889Z"
+    },
+    {
+      "id": "r1770038968664_28",
+      "productId": "p6",
+      "userId": "u17",
+      "orderId": "o34",
+      "rating": 5,
+      "comment": "Next bakal order lagi di sini.",
+      "createdAt": "2025-10-18T04:02:10.148Z"
+    },
+    {
+      "id": "r1770038968664_29",
+      "productId": "p1",
+      "userId": "u20",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Kualitas oke banget untuk harga segini.",
+      "createdAt": "2025-10-20T21:10:57.623Z"
+    },
+    {
+      "id": "r1770038968664_30",
+      "productId": "p5",
+      "userId": "u9",
+      "orderId": "o17",
+      "rating": 4,
+      "comment": "Kualitas oke banget untuk harga segini.",
+      "createdAt": "2026-01-15T09:48:25.720Z"
+    },
+    {
+      "id": "r1770038968664_31",
+      "productId": "p6",
+      "userId": "u21",
+      "orderId": "o4",
+      "rating": 4,
+      "comment": "Aksesorisnya unik, jarang ada yang nyamain.",
+      "createdAt": "2025-11-06T20:02:45.288Z"
+    },
+    {
+      "id": "r1770038968664_32",
+      "productId": "p2",
+      "userId": "u22",
+      "orderId": "o32",
+      "rating": 5,
+      "comment": "Recommended seller!",
+      "createdAt": "2026-01-02T13:49:41.740Z"
+    },
+    {
+      "id": "r1770038968664_33",
+      "productId": "p4",
+      "userId": "u9",
+      "orderId": "o2",
+      "rating": 5,
+      "comment": "Recommended seller!",
+      "createdAt": "2025-10-15T06:58:20.547Z"
+    },
+    {
+      "id": "r1770038968664_34",
+      "productId": "p1",
+      "userId": "u17",
+      "orderId": "o28",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2025-12-14T08:21:22.261Z"
+    },
+    {
+      "id": "r1770038968664_35",
+      "productId": "p4",
+      "userId": "u6",
+      "orderId": "o7",
+      "rating": 4,
+      "comment": "Recommended seller!",
+      "createdAt": "2025-10-23T10:18:55.474Z"
+    },
+    {
+      "id": "r1770038968664_36",
+      "productId": "p5",
+      "userId": "u16",
+      "orderId": "o31",
+      "rating": 4,
+      "comment": "Produk original, mantap.",
+      "createdAt": "2026-01-10T03:12:46.917Z"
+    },
+    {
+      "id": "r1770038968664_37",
+      "productId": "p3",
+      "userId": "u1",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Beli buat kado, yang dikasih seneng banget.",
+      "createdAt": "2025-11-18T10:33:56.776Z"
+    },
+    {
+      "id": "r1770038968664_38",
+      "productId": "p4",
+      "userId": "u16",
+      "orderId": "o30",
+      "rating": 5,
+      "comment": "Recommended seller!",
+      "createdAt": "2025-12-04T06:05:18.909Z"
+    },
+    {
+      "id": "r1770038968664_39",
+      "productId": "p1",
+      "userId": "u14",
+      "orderId": "o27",
+      "rating": 4,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2025-12-26T20:15:50.850Z"
+    },
+    {
+      "id": "r1770038968664_40",
+      "productId": "p6",
+      "userId": "u16",
+      "orderId": "o30",
+      "rating": 4,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2025-11-22T15:12:29.390Z"
+    },
+    {
+      "id": "r1770038968664_41",
+      "productId": "p3",
+      "userId": "u3",
+      "orderId": "o7",
+      "rating": 5,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2026-01-08T16:24:58.745Z"
+    },
+    {
+      "id": "r1770038968664_42",
+      "productId": "p6",
+      "userId": "u7",
+      "orderId": "o4",
+      "rating": 5,
+      "comment": "Produk original, mantap.",
+      "createdAt": "2025-12-15T20:47:38.261Z"
+    },
+    {
+      "id": "r1770038968664_43",
+      "productId": "p2",
+      "userId": "u21",
+      "orderId": "o32",
+      "rating": 4,
+      "comment": "Kualitas oke banget untuk harga segini.",
+      "createdAt": "2025-11-11T17:48:48.811Z"
+    },
+    {
+      "id": "r1770038968664_44",
+      "productId": "p6",
+      "userId": "u19",
+      "orderId": "o4",
+      "rating": 5,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2025-12-05T22:50:24.898Z"
+    },
+    {
+      "id": "r1770038968664_45",
+      "productId": "p1",
+      "userId": "u6",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Aksesorisnya unik, jarang ada yang nyamain.",
+      "createdAt": "2026-01-13T18:13:54.233Z"
+    },
+    {
+      "id": "r1770038968664_46",
+      "productId": "p6",
+      "userId": "u1",
+      "orderId": "o4",
+      "rating": 4,
+      "comment": "Aksesorisnya unik, jarang ada yang nyamain.",
+      "createdAt": "2026-01-16T13:38:39.309Z"
+    },
+    {
+      "id": "r1770038968664_47",
+      "productId": "p3",
+      "userId": "u12",
+      "orderId": "o7",
+      "rating": 4,
+      "comment": "Terima kasih, bonusnya lucu.",
+      "createdAt": "2025-10-22T14:11:24.949Z"
+    },
+    {
+      "id": "r1770038968664_48",
+      "productId": "p2",
+      "userId": "u6",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Respon penjual cepat dan ramah.",
+      "createdAt": "2025-11-11T23:59:12.484Z"
+    },
+    {
+      "id": "r1770038968664_49",
+      "productId": "p6",
+      "userId": "u1",
+      "orderId": "o4",
+      "rating": 5,
+      "comment": "Recommended seller!",
+      "createdAt": "2025-11-25T01:04:08.409Z"
+    },
+    {
+      "id": "r1770038968664_50",
+      "productId": "p1",
+      "userId": "u20",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Pengiriman cepat, packing rapi.",
+      "createdAt": "2025-11-04T20:55:11.242Z"
+    },
+    {
+      "id": "r1770038968664_51",
+      "productId": "p2",
+      "userId": "u19",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Pengiriman cepat, packing rapi.",
+      "createdAt": "2025-11-20T15:16:59.107Z"
+    },
+    {
+      "id": "r1770038968664_52",
+      "productId": "p1",
+      "userId": "u20",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Aksesorisnya unik, jarang ada yang nyamain.",
+      "createdAt": "2025-12-10T00:59:33.255Z"
+    },
+    {
+      "id": "r1770038968664_53",
+      "productId": "p4",
+      "userId": "u17",
+      "orderId": "o34",
+      "rating": 4,
+      "comment": "Beli buat kado, yang dikasih seneng banget.",
+      "createdAt": "2025-11-20T00:25:51.711Z"
+    },
+    {
+      "id": "r1770038968664_54",
+      "productId": "p1",
+      "userId": "u3",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Next bakal order lagi di sini.",
+      "createdAt": "2025-10-14T16:34:09.565Z"
+    },
+    {
+      "id": "r1770038968664_55",
+      "productId": "p3",
+      "userId": "u7",
+      "orderId": "o12",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2025-10-19T12:33:28.159Z"
+    },
+    {
+      "id": "r1770038968664_56",
+      "productId": "p1",
+      "userId": "u3",
+      "orderId": "o1",
+      "rating": 4,
+      "comment": "Aksesorisnya unik, jarang ada yang nyamain.",
+      "createdAt": "2026-01-26T10:45:33.985Z"
+    },
+    {
+      "id": "r1770038968664_57",
+      "productId": "p2",
+      "userId": "u8",
+      "orderId": "o1",
+      "rating": 5,
+      "comment": "Produk original, mantap.",
+      "createdAt": "2025-10-11T20:31:33.412Z"
+    },
+    {
+      "id": "r1770038968664_58",
+      "productId": "p5",
+      "userId": "u14",
+      "orderId": "o26",
+      "rating": 5,
+      "comment": "Produk original, mantap.",
+      "createdAt": "2025-11-06T20:14:27.172Z"
+    },
+    {
+      "id": "r1770038968664_59",
+      "productId": "p5",
+      "userId": "u22",
+      "orderId": "o3",
+      "rating": 5,
+      "comment": "Tasnya kuat, muat banyak.",
+      "createdAt": "2026-02-01T15:04:22.245Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "o1",
+      "userId": "u1",
+      "status": "delivered",
+      "total": 190000,
+      "createdAt": "2024-01-20T10:00:00Z",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Cooky",
+              "Strap": "Pink"
+          }
+        },
+        {
+          "productId": "p2",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "White"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Red"
+          }
+        }
+      ]
+    },
+    {
+      "id": "o2",
+      "userId": "u2",
+      "status": "delivered",
+      "total": 140000,
+      "createdAt": "2024-01-14T10:00:00Z",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Tata",
+              "Strap": "Purple"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Milky Brown",
+              "Overalls": "Mint"
+          }
+        }
+      ]
+    },
+    {
+      "id": "o3",
+      "userId": "u1",
+      "status": "delivered",
+      "total": 150000,
+      "createdAt": "2024-02-01T10:00:00Z",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 1,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Black",
+              "Handle Color": "Leather Brown",
+              "Zipper": "Yes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "o4",
+      "userId": "u2",
+      "status": "delivered",
+      "total": 35000,
+      "createdAt": "2024-02-01T10:00:00Z",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 1,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Green",
+              "Ring Type": "Gold Premium"
+          }
+        }
+      ]
+    },
+    {
+      "id": "o5",
+      "userId": "u2",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Tata",
+              "Strap": "Purple"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 100000,
+      "createdAt": "2025-12-16T13:30:44.330Z"
+    },
+    {
+      "id": "o6",
+      "userId": "u3",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Yellow",
+              "Ring Type": "Ball Chain"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Brown",
+              "Scarf": "Green"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 250000,
+      "createdAt": "2025-11-27T15:19:55.693Z"
+    },
+    {
+      "id": "o7",
+      "userId": "u3",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Purple",
+              "Ring Type": "Gold Premium"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "White",
+              "Overalls": "Blue"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Yellow"
+          }
+        }
+      ],
+      "status": "shipped",
+      "total": 250000,
+      "createdAt": "2025-12-11T00:59:40.603Z"
+    },
+    {
+      "id": "o8",
+      "userId": "u4",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "White"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Brown",
+              "Scarf": "Red"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 140000,
+      "createdAt": "2026-01-26T12:28:58.817Z"
+    },
+    {
+      "id": "o9",
+      "userId": "u4",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Navy",
+              "Handle Color": "Leather Brown",
+              "Zipper": "Yes"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 300000,
+      "createdAt": "2025-12-27T21:19:42.477Z"
+    },
+    {
+      "id": "o10",
+      "userId": "u6",
+      "items": [
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Green"
+          }
+        },
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Army",
+              "Handle Color": "Black",
+              "Zipper": "No"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 390000,
+      "createdAt": "2025-11-12T12:36:12.666Z"
+    },
+    {
+      "id": "o11",
+      "userId": "u7",
+      "items": [
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "White",
+              "Overalls": "Pink"
+          }
+        }
+      ],
+      "status": "delivered",
+      "total": 90000,
+      "createdAt": "2025-10-26T15:36:55.365Z"
+    },
+    {
+      "id": "o12",
+      "userId": "u7",
+      "items": [
+        {
+          "productId": "p3",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Red"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Milky Brown",
+              "Overalls": "Mint"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 360000,
+      "createdAt": "2025-11-19T23:37:53.055Z"
+    },
+    {
+      "id": "o13",
+      "userId": "u8",
+      "items": [
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Brown",
+              "Scarf": "Yellow"
+          }
+        }
+      ],
+      "status": "delivered",
+      "total": 90000,
+      "createdAt": "2025-12-16T04:50:50.819Z"
+    },
+    {
+      "id": "o14",
+      "userId": "u8",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Black",
+              "Handle Color": "Cream",
+              "Zipper": "Yes"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 300000,
+      "createdAt": "2025-10-14T13:01:44.848Z"
+    },
+    {
+      "id": "o15",
+      "userId": "u8",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Chimmy",
+              "Strap": "Black"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "White",
+              "Overalls": "Blue"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 280000,
+      "createdAt": "2025-11-19T03:54:20.464Z"
+    },
+    {
+      "id": "o16",
+      "userId": "u9",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "Beige"
+          }
+        }
+      ],
+      "status": "delivered",
+      "total": 100000,
+      "createdAt": "2026-01-06T02:51:50.990Z"
+    },
+    {
+      "id": "o17",
+      "userId": "u9",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 1,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "White",
+              "Handle Color": "Black",
+              "Zipper": "No"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 150000,
+      "createdAt": "2025-12-22T08:04:24.370Z"
+    },
+    {
+      "id": "o18",
+      "userId": "u9",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Koya",
+              "Strap": "Purple"
+          }
+        },
+        {
+          "productId": "p5",
+          "quantity": 1,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Army",
+              "Handle Color": "Leather Brown",
+              "Zipper": "Yes"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Green"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 290000,
+      "createdAt": "2026-01-30T00:33:07.934Z"
+    },
+    {
+      "id": "o19",
+      "userId": "u11",
+      "items": [
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Milky Brown",
+              "Overalls": "Blue"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 90000,
+      "createdAt": "2025-12-24T00:01:07.251Z"
+    },
+    {
+      "id": "o20",
+      "userId": "u11",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Lilac",
+              "Strap": "White"
+          }
+        },
+        {
+          "productId": "p5",
+          "quantity": 1,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Navy",
+              "Handle Color": "Black",
+              "Zipper": "Yes"
+          }
+        }
+      ],
+      "status": "delivered",
+      "total": 250000,
+      "createdAt": "2025-11-11T18:58:27.803Z"
+    },
+    {
+      "id": "o21",
+      "userId": "u11",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "White",
+              "Handle Color": "Cream",
+              "Zipper": "Yes"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Brown",
+              "Scarf": "Yellow"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 390000,
+      "createdAt": "2026-01-13T02:45:43.486Z"
+    },
+    {
+      "id": "o22",
+      "userId": "u12",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Blue",
+              "Ring Type": "Gold Premium"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Milky Brown",
+              "Overalls": "Pink"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 160000,
+      "createdAt": "2025-12-01T01:52:40.995Z"
+    },
+    {
+      "id": "o23",
+      "userId": "u13",
+      "items": [
+        {
+          "productId": "p4",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "White",
+              "Overalls": "Mint"
+          }
+        },
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "Beige"
+          }
+        }
+      ],
+      "status": "delivered",
+      "total": 280000,
+      "createdAt": "2025-12-06T05:09:40.825Z"
+    },
+    {
+      "id": "o24",
+      "userId": "u13",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Lilac",
+              "Strap": "White"
+          }
+        },
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Pink",
+              "Ring Type": "Silver Standard"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 170000,
+      "createdAt": "2026-01-21T09:57:16.110Z"
+    },
+    {
+      "id": "o25",
+      "userId": "u14",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Purple",
+              "Ring Type": "Gold Premium"
+          }
+        },
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Blue",
+              "Strap": "Beige"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Overalls": "Blue"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 260000,
+      "createdAt": "2025-12-30T09:13:24.849Z"
+    },
+    {
+      "id": "o26",
+      "userId": "u14",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Army",
+              "Handle Color": "Black",
+              "Zipper": "No"
+          }
+        },
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Yellow",
+              "Ring Type": "Ball Chain"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 370000,
+      "createdAt": "2025-12-31T02:18:15.366Z"
+    },
+    {
+      "id": "o27",
+      "userId": "u14",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Black",
+              "Handle Color": "Leather Brown",
+              "Zipper": "Yes"
+          }
+        },
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Lilac",
+              "Strap": "White"
+          }
+        },
+        {
+          "productId": "p1",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Cooky",
+              "Strap": "Pink"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 450000,
+      "createdAt": "2025-11-22T17:33:50.960Z"
+    },
+    {
+      "id": "o28",
+      "userId": "u15",
+      "items": [
+        {
+          "productId": "p1",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Character": "Tata",
+              "Strap": "Purple"
+          }
+        },
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "Beige"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 200000,
+      "createdAt": "2025-11-07T12:42:33.054Z"
+    },
+    {
+      "id": "o29",
+      "userId": "u15",
+      "items": [
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Red"
+          }
+        }
+      ],
+      "status": "delivered",
+      "total": 90000,
+      "createdAt": "2025-10-28T13:21:26.084Z"
+    },
+    {
+      "id": "o30",
+      "userId": "u16",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Blue",
+              "Ring Type": "Gold Premium"
+          }
+        },
+        {
+          "productId": "p4",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "White",
+              "Overalls": "Blue"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 250000,
+      "createdAt": "2025-12-24T00:36:14.001Z"
+    },
+    {
+      "id": "o31",
+      "userId": "u16",
+      "items": [
+        {
+          "productId": "p4",
+          "quantity": 2,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "White",
+              "Overalls": "Pink"
+          }
+        },
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "White",
+              "Handle Color": "Leather Brown",
+              "Zipper": "Yes"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 480000,
+      "createdAt": "2025-12-13T05:53:56.237Z"
+    },
+    {
+      "id": "o32",
+      "userId": "u16",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "White"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 100000,
+      "createdAt": "2025-11-26T03:12:39.641Z"
+    },
+    {
+      "id": "o33",
+      "userId": "u17",
+      "items": [
+        {
+          "productId": "p5",
+          "quantity": 2,
+          "price": 150000,
+          "selectedVariants": {
+              "Canvas Color": "Black",
+              "Handle Color": "Cream",
+              "Zipper": "Yes"
+          }
+        },
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Pink",
+              "Ring Type": "Gold Premium"
+          }
+        }
+      ],
+      "status": "shipped",
+      "total": 370000,
+      "createdAt": "2025-10-14T05:30:05.194Z"
+    },
+    {
+      "id": "o34",
+      "userId": "u17",
+      "items": [
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Milky Brown",
+              "Overalls": "Blue"
+          }
+        },
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Blue",
+              "Ring Type": "Silver Standard"
+          }
+        }
+      ],
+      "status": "shipped",
+      "total": 160000,
+      "createdAt": "2025-10-12T23:11:44.183Z"
+    },
+    {
+      "id": "o35",
+      "userId": "u18",
+      "items": [
+        {
+          "productId": "p4",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Overalls": "Pink"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 90000,
+      "createdAt": "2026-01-19T16:52:37.984Z"
+    },
+    {
+      "id": "o36",
+      "userId": "u20",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Lilac",
+              "Strap": "Beige"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 100000,
+      "createdAt": "2025-12-01T11:56:20.530Z"
+    },
+    {
+      "id": "o37",
+      "userId": "u20",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 1,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Blue",
+              "Strap": "White"
+          }
+        }
+      ],
+      "status": "processing",
+      "total": 50000,
+      "createdAt": "2025-12-03T23:26:44.318Z"
+    },
+    {
+      "id": "o38",
+      "userId": "u20",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 2,
+          "price": 50000,
+          "selectedVariants": {
+              "Main Body": "Pastel Pink",
+              "Strap": "White"
+          }
+        }
+      ],
+      "status": "pending",
+      "total": 100000,
+      "createdAt": "2026-02-02T21:13:52.449Z"
+    },
+    {
+      "id": "o39",
+      "userId": "u22",
+      "items": [
+        {
+          "productId": "p6",
+          "quantity": 2,
+          "price": 35000,
+          "selectedVariants": {
+              "Dino Color": "Green",
+              "Ring Type": "Gold Premium"
+          }
+        },
+        {
+          "productId": "p3",
+          "quantity": 1,
+          "price": 90000,
+          "selectedVariants": {
+              "Body": "Beige",
+              "Scarf": "Red"
+          }
+        }
+      ],
+      "status": "cancelled",
+      "total": 160000,
+      "createdAt": "2026-02-02T22:14:14.000Z"
     }
   ]
 }
