@@ -3,10 +3,11 @@ import { deleteReview } from '@/lib/services/review-service';
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
-    const success = await deleteReview(params.id);
+    const success = await deleteReview(id);
     
     if (success) {
       return NextResponse.json({ success: true });

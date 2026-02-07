@@ -3,15 +3,17 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { updateOrder, deleteOrder, getOrder } from '@/lib/services/order-service';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const order = await getOrder(params.id);
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const order = await getOrder(id);
   if (!order) {
     return NextResponse.json({ error: 'Order not found' }, { status: 404 });
   }
   return NextResponse.json(order);
 }
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   
   // Only admin can update arbitrary orders, users might cancel their own (but we'll restrict to admin for now or general update)
@@ -22,7 +24,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
   try {
     const body = await request.json();
-    const updatedOrder = await updateOrder(params.id, body);
+    const updatedOrder = await updateOrder(id, body);
     
     if (!updatedOrder) {
         return NextResponse.json({ error: 'Order not found' }, { status: 404 });
@@ -34,7 +36,8 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   }
 }
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const session = await getServerSession(authOptions);
   
   if (!session || (session.user as any).role !== 'admin') {
@@ -42,7 +45,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
   }
 
   try {
-    const success = await deleteOrder(params.id);
+    const success = await deleteOrder(id);
     if (!success) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
