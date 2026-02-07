@@ -4,43 +4,15 @@ import React, { useState, useEffect } from "react";
 import { OrderList } from "./OrderList";
 import { Order, User, Product } from "@/lib/types";
 import { Loader2 } from "lucide-react";
-
+import { useGetOrdersQuery, useGetUsersQuery, useGetProductsQuery } from "@/lib/redux/slices/apiSlice";
 
 export default function AdminOrdersPage() {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<{
-      orders: Order[];
-      users: User[];
-      products: Product[];
-  }>({ orders: [], users: [], products: [] });
+  const { data: orders = [], isLoading: ordersLoading } = useGetOrdersQuery();
+  const { data: users = [], isLoading: usersLoading } = useGetUsersQuery();
+  const { data: productsData, isLoading: productsLoading } = useGetProductsQuery();
 
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const [ordersRes, usersRes, productsRes] = await Promise.all([
-                fetch("/api/orders", { cache: 'no-store' }),
-                fetch("/api/users", { cache: 'no-store' }),
-                fetch("/api/products", { cache: 'no-store' })
-            ]);
-
-            const orders = await ordersRes.json();
-            const users = await usersRes.json();
-            const products = await productsRes.json();
-
-            setData({
-                orders: Array.isArray(orders) ? orders : [],
-                users: Array.isArray(users) ? users : [],
-                products: Array.isArray(products) ? products : products.products || []
-            });
-        } catch (error) {
-            console.error("Failed to fetch order data", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    
-    fetchData();
-  }, []);
+  const products = Array.isArray(productsData) ? productsData : productsData?.products || [];
+  const loading = ordersLoading || usersLoading || productsLoading;
 
   if (loading) {
       return (
@@ -60,9 +32,9 @@ export default function AdminOrdersPage() {
       </div>
       
       <OrderList 
-          orders={data.orders} 
-          users={data.users} 
-          products={data.products} 
+          orders={orders} 
+          users={users} 
+          products={products} 
       />
     </div>
   );

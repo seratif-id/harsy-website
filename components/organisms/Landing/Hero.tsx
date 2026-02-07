@@ -14,7 +14,10 @@ interface HeroProps {
     happyCustomers?: {
         count: string;
         label: string;
-        images: string[];
+        customers: {
+          name: string;
+          image?: string;
+        }[];
     };
   };
 }
@@ -25,7 +28,18 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
   const customerCount = content?.happyCustomers?.count || content?.customerCount || "1,200+";
   const customerLabel = content?.happyCustomers?.label || content?.customerLabel || "Pelanggan Bahagia";
   const imageSrc = content?.image || "/sampleImage/heroImg.png";
-  const customerImages = content?.happyCustomers?.images || [];
+  const customers = content?.happyCustomers?.customers || [];
+
+  const getInitials = (name: string) => {
+    const names = name.trim().split(" ");
+    if (names.length === 0) return "";
+    
+    let initials = names[0].charAt(0).toUpperCase();
+    if (names.length > 1) {
+      initials += names[names.length - 1].charAt(0).toUpperCase();
+    }
+    return initials;
+  };
 
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-brand-muted/30">
@@ -56,17 +70,27 @@ export const Hero: React.FC<HeroProps> = ({ content }) => {
               <Button size="lg" className="h-16 px-10 text-lg shadow-xl shadow-brand-primary/20" onClick={() => window.location.href='/products'}>
                 Eksplorasi Koleksi
               </Button>
-              <Button variant="ghost" size="lg" className="h-16 px-10 text-lg border-2 border-brand-primary/10 hover:border-brand-primary/20" onClick={() => window.location.href='/order'}>
+              <Button variant="ghost" size="lg" className="h-16 px-10 text-lg border-2 border-brand-primary/10 hover:border-brand-primary/20" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                 Custom Pesanan
               </Button>
             </div>
             
             <div className="mt-16 flex items-center gap-6 p-4 backdrop-blur-sm">
               <div className="flex -space-x-4">
-                {customerImages.length > 0 ? (
-                  customerImages.map((img, i) => (
-                    <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white bg-brand-muted flex items-center justify-center overflow-hidden shadow-sm relative">
-                       <Image src={img} alt="Customer" fill className="object-cover" />
+                {customers.length > 0 ? (
+                  customers.map((customer, i) => (
+                    <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white bg-brand-muted flex items-center justify-center overflow-hidden shadow-sm relative group cursor-help">
+                       {customer.image ? (
+                         <Image src={customer.image} alt={customer.name} fill className="object-cover" />
+                       ) : (
+                         <span className="text-sm font-bold text-brand-primary/60 select-none">
+                           {getInitials(customer.name)}
+                         </span>
+                       )}
+                       {/* Tooltip */}
+                       <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-brand-primary text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                         {customer.name}
+                       </div>
                     </div>
                   ))
                 ) : (

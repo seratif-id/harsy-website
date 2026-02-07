@@ -30,7 +30,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, isLoading } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
@@ -84,7 +84,9 @@ export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-secondary group-hover/link:w-full transition-all duration-300" />
               </Link>
             ))}
-            {isAuthenticated && user ? (
+            {isLoading ? (
+               <div className="w-10 h-10 rounded-full bg-gray-100 animate-pulse" />
+            ) : isAuthenticated && user ? (
                <UserDropdown user={user} />
             ) : (
                 <Button variant="primary" size="sm" className="shadow-brand-primary/20" onClick={() => router.push("/login")}>
@@ -111,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 z-[55] md:hidden transition-all duration-500 ${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         <div className="absolute inset-0 bg-white/40 backdrop-blur-2xl" onClick={() => setIsMenuOpen(false)} />
-        <div className={`absolute top-0 right-0 bottom-0 w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-500 p-10 pt-40 ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <div className={`absolute top-0 right-0 bottom-0 w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-500 p-10 pt-40 overflow-y-auto ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
           <div className="flex flex-col gap-8">
             <span className="text-brand-secondary font-black tracking-[0.3em] text-md uppercase mb-2">Navigasi Utama</span>
             {navLinks.map((link: NavLink) => (
@@ -125,32 +127,36 @@ export const Navbar: React.FC<NavbarProps> = ({ siteContent }) => {
               </Link>
             ))}
             <div className="h-px bg-brand-primary/5 my-4" />
-            {isAuthenticated ? (
+            {isLoading ? (
+              <div className="flex flex-col gap-4 animate-pulse">
+                <div className="w-full h-16 bg-gray-100 rounded-full" />
+                <div className="w-full h-16 bg-gray-100 rounded-full" />
+              </div>
+            ) : isAuthenticated ? (
                <div className="flex flex-col gap-4">
-                  <Button size="lg" className="w-full h-16 text-md shadow-2xl shadow-brand-primary/20" onClick={() => {
-                      setIsMenuOpen(false);
-                      router.push("/profile");
-                  }}>
+                  <Link 
+                    href="/profile"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 bg-brand-primary text-white hover:bg-opacity-90 shadow-2xl shadow-brand-primary/20 w-full h-16 text-md px-8 py-3"
+                  >
                     Profile User
-                  </Button>
-                   <Button variant="ghost" size="lg" className="w-full h-16 text-md border-2 border-brand-primary/10" onClick={() => {
-                      setIsMenuOpen(false);
-                      router.push("/history");
-                  }}>
+                  </Link>
+                   <Link 
+                     href="/history"
+                     onClick={() => setIsMenuOpen(false)}
+                     className="inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 bg-transparent text-brand-primary hover:bg-brand-muted border-2 border-brand-primary/10 w-full h-16 text-md px-8 py-3"
+                   >
                     History Order
-                  </Button>
+                  </Link>
                </div>
             ) : (
-                <Button 
-                  size="lg" 
-                  className="w-full h-16 text-md shadow-2xl shadow-brand-primary/20"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    router.push("/login");
-                  }}
+                <Link 
+                  href="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 bg-brand-primary text-white hover:bg-opacity-90 shadow-2xl shadow-brand-primary/20 w-full h-16 text-md px-8 py-3"
                 >
                   Masuk
-                </Button>
+                </Link>
             )}
             
             <div className="mt-auto pt-20">

@@ -7,10 +7,10 @@ export interface Product {
   category: string;
   rating: number;
   sold: number;
-  estimatedTime: string; // e.g. "2-3 hari"
+  estimatedTime: string; 
   originalPrice?: number;
   reviewCount?: number;
-  updatedAt: string; // ISO Date string
+  updatedAt: string; 
   description?: string;
   colors?: string[];
   partitions?: ProductPartition[];
@@ -25,7 +25,7 @@ export interface Review {
   id: string;
   productId: string;
   userId: string;
-  orderId?: string; // Link to the order this review is for
+  orderId?: string; 
   rating: number;
   comment: string;
   createdAt: string;
@@ -57,10 +57,10 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  role: "user" | "admin"; // Kept for backward compatibility logic
-  roleId?: string; // Link to dynamic role
+  role: "user" | "admin"; 
+  roleId?: string; 
   avatar?: string;
-  password?: string; // For mock auth verification
+  password?: string; 
   address?: string;
   city?: string;
   phone?: string;

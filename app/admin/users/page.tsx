@@ -1,13 +1,21 @@
+"use client";
+
 import Link from "next/link";
-import { Plus } from "lucide-react";
-import { getUsers } from "@/lib/services/user-service";
+import { Plus, Loader2 } from "lucide-react";
 import React from 'react';
 import { UserList } from "./UserList";
+import { useGetUsersQuery } from "@/lib/redux/slices/apiSlice";
 
-export const dynamic = "force-dynamic";
+export default function UsersPage() {
+  const { data: users = [], isLoading } = useGetUsersQuery();
 
-export default async function UsersPage() {
-  const users = await getUsers();
+  if (isLoading) {
+      return (
+          <div className="flex justify-center items-center h-64">
+              <Loader2 className="w-8 h-8 animate-spin text-brand-primary" />
+          </div>
+      );
+  }
 
   return (
     <div className="space-y-6">

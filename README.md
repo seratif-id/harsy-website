@@ -1,128 +1,404 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Harsy Handmade - Backend Documentation
 
-## Getting Started
+This document outlines the backend architecture, database schema, and API requirements for the Harsy Handmade e-commerce platform. The backend will be built using **NestJS** and **Prisma ORM**.
 
-First, run the development server:
+## 1. Database Schema Design (Prisma)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The database should support users, roles, products, categories, orders, and reviews. Below is the proposed relationship and schema structure.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Models & Logic
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*   **Role**: Manages permissions (Admin vs Customer).
+*   **User**: Stores account info. Linked to a Role.
+*   **Category**: Product categories.
+*   **Product**: Items for sale. Linked to Category.
+*   **Order**: Transaction records. Linked to User.
+*   **OrderItem**: Individual items in an order. Linked to Order and Product.
+*   **Review**: User feedback. Linked to User, Product, and Order (verified purchase).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Schema Overview
 
-## Learn More
+| Model | Columns | Relationships |
+| :--- | :--- | :--- |
+| **Role** | `id` (PK), `name` (String), `permissions` (JSON/String[]) | One-to-Many with User |
+| **User** | `id` (uuid, PK), `email`, `password` (hashed), `name`, `avatar`, `roleId` (FK), `address`, `phone` | Many-to-One Role, One-to-Many Orders/Reviews |
+| **Category** | `id` (uuid, PK), `name`, `slug` (unique), `image`, `description` | One-to-Many Products |
+| **Product** | `id` (uuid, PK), `name`, `slug` (unique), `price`, `description`, `stock`, `categoryId` (FK), `images` (String[]), `partitions` (JSON - for variants) | Many-to-One Category, One-to-Many OrderItems/Reviews |
+| **Order** | `id` (uuid, PK), `userId` (FK), `total` (Float), `status` (ENUM: PENDING, PAID, SHIPPED, etc.), `shippingAddress` (JSON), `createdAt` | Many-to-One User, One-to-Many OrderItems |
+| **OrderItem** | `id` (uuid, PK), `orderId` (FK), `productId` (FK), `quantity` (Int), `price` (Float), `selectedVariants` (JSON) | Many-to-One Order, Many-to-One Product |
+| **Review** | `id` (uuid, PK), `userId` (FK), `productId` (FK), `orderId` (FK), `rating` (Int), `comment` (String) | Many-to-One User/Product/Order |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 2. API Endpoints & Logic
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The backend should expose RESTful APIs. All responses should follow a standard format (e.g., `{ "data": ..., "meta": ... }`).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## API Specification
-
-The backend currently serves mock data, but follows this contract:
-
-### GET /api/products
-
-Returns a list of products.
-
-**Response Structure:**
-
-```json
-[
-  {
-    "id": "string",
-    "name": "string",
-    "slug": "string",
-    "price": "number",
-    "originalPrice": "number (optional, triggers discount badge)",
-    "image": ["string"],
-    "category": "boneka" | "tas" | "aksesoris",
-    "rating": "number",
-    "reviewCount": "number (optional)",
-    "sold": "number",
-    "estimatedTime": "string",
-    "updatedAt": "string (ISO Date, used for New products)",
-    "description": "string"
-  }
-]
-```
-
-## API Reference
-
-### Authentication (`/api/auth/*`)
-Handled by **NextAuth.js**.
-- `POST /api/auth/signin`: Sign in.
-- `POST /api/auth/signout`: Sign out.
-- `GET /api/auth/session`: Get current session.
-
-### Products (`/api/products`)
-
-#### GET /api/products
-Retrieve a list of all products.
-
-**Response:**
-```json
-[
-  {
-    "id": "p1",
-    "name": "Bag Charm BTS Jongkook",
-    "price": 35000,
-    "image": ["/uploads/Product 1.png"],
-    ...
-  }
-]
-```
-
-#### GET /api/products/:slug
-Retrieve a single product by slug.
-
-**Response:**
-```json
-{
-  "id": "p1",
-  "name": "Bag Charm BTS Jongkook",
-  "slug": "bag-charm-bts-jongkook",
-  ...
-}
-```
-
-### Orders (`/api/orders`)
-
-#### POST /api/orders
-Create a new order.
-
+### Authentication (`/auth`)
+*   **POST** `/auth/register`: Create a new user. Default role: 'Customer'.
+*   **POST** `/auth/login`: Validate credentials, return JWT access token.
+#### Example: Register
 **Request:**
 ```json
+POST /auth/register
 {
-  "items": [{ "productId": "p1", "quantity": 1, "customization": {...} }],
-  "customer": { "name": "Bunda", "email": "..." }
+  "name": "New User",
+  "email": "newuser@example.com",
+  "password": "securePassword123",
+  "address": "Jl. Kemerdekaan No. 45",
+  "city": "Jakarta",
+  "phone": "081234567890"
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+      "id": "new-user-uuid",
+      "email": "newuser@example.com",
+      "role": "Customer",
+      "address": "Jl. Kemerdekaan No. 45",
+      "city": "Jakarta",
+      "phone": "081234567890"
+    }
+  }
 }
 ```
 
-#### Badge Logic (Frontend Calculated)
+#### Example: Get Me
+**Request:** `GET /auth/me` (Header: `Authorization: Bearer <token>`)
 
-Badges are determined dynamically based on the full product dataset:
-- **New**: Top 4 products sorted by `updatedAt` descending.
-- **Top Deal**: `(originalPrice - price) / originalPrice` is the maximum among all products.
-- **Hot**: `sold` >= 5 and matches the maximum `sold` count.
-- **Recommended**: `reviewCount` > 5 and `rating` matches the maximum rating among qualified products.
+**Response:**
+```json
+{
+  "data": {
+    "user": {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Customer Name",
+      "email": "customer@example.com",
+      "role": "Customer",
+      "avatar": "/avatars/user-1.jpg",
+      "address": "Jl. Kemerdekaan No. 45",
+      "city": "Jakarta",
+      "phone": "081234567890"
+    }
+  }
+}
+```
 
-This logic is centralized in `utils/badge.ts`.
+#### Example: Login
+**Request:**
+```json
+POST /auth/login
+{
+  "email": "customer@example.com",
+  "password": "securePassword123"
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "email": "customer@example.com",
+      "role": "Customer"
+    }
+  }
+}
+```
+
+### Products (`/products`)
+*   **GET** `/products`: List products. Support query params: `page`, `limit`, `category`, `search`.
+*   **GET** `/products/:slug`: Get single product details.
+*   **POST** `/products`: Create product (Admin only).
+*   **PATCH** `/products/:id`: Update product (Admin only).
+*   **DELETE** `/products/:id`: Delete product (Admin only).
+
+#### Example: Get Single Product
+**Request:** `GET /products/tas-rajut-bunga`
+
+**Response:**
+```json
+{
+  "data": {
+    "id": "prod-uuid-1",
+    "name": "Tas Rajut Bunga",
+    "description": "Tas rajut cantik...",
+    "price": 150000,
+    "slug": "tas-rajut-bunga",
+    "stock": 10,
+    "estimatedTime": "3-5 hari",
+    "images": ["url1.jpg", "url2.jpg"],
+    "category": { "name": "Tas" }
+  }
+}
+```
+
+#### Example: Create Product (Admin)
+**Request:**
+```json
+POST /products
+{
+  "name": "Dompet Rajut",
+  "price": 50000,
+  "description": "Dompet kecil lucu",
+  "stock": 20,
+  "estimatedTime": "3-5 hari",
+  "categoryId": "cat-uuid-1",
+  "image": ["urlA.jpg", "urlB.jpg"],
+  "partitions": [
+    { "name": "Main Body", "colors": ["Red", "Blue"] },
+    { "name": "Strap", "colors": ["Black", "White"] }
+  ]
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "id": "prod-uuid-2",
+    "name": "Dompet Rajut",
+    "slug": "dompet-rajut"
+  }
+}
+```
+
+#### Example: List Products
+**Request:** `GET /products?page=1&limit=10&category=tas`
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": "prod-uuid-1",
+      "name": "Tas Rajut Bunga",
+      "price": 150000,
+      "slug": "tas-rajut-bunga",
+      "category": { "name": "Tas" }
+    }
+  ],
+  "meta": {
+    "total": 50,
+    "page": 1,
+    "lastPage": 5
+  }
+}
+```
+
+### Categories (`/categories`)
+*   **GET** `/categories`: List all categories.
+*   **POST** `/categories`: Create category (Admin only).
+
+#### Example: List Categories
+**Request:** `GET /categories`
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": "cat-uuid-1",
+      "name": "Tas",
+      "slug": "tas",
+      "image": "cat-img.jpg"
+    }
+  ]
+}
+```
+
+#### Example: Create Category (Admin)
+**Request:**
+```json
+POST /categories
+{
+  "name": "Topi",
+  "image": "topi-img.jpg",
+  "description": "Koleksi topi rajut"
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "id": "cat-uuid-3",
+    "name": "Topi",
+    "slug": "topi"
+  }
+}
+```
+
+### Orders (`/orders`)
+*   **POST** `/orders`: Create a new order.
+    *   *Logic*: Validate stock (optional), calculate total from backend prices (security), create Order and OrderItems in a transaction.
+*   **GET** `/orders`: List orders. 
+    *   *Logic*: If Admin, list all. If Customer, list only their own.
+*   **GET** `/orders/:id`: Get order details.
+*   **PATCH** `/orders/:id/status`: Update order status (Admin only).
+
+#### Example: List Orders
+**Request:** `GET /orders`
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": "order-uuid-999",
+      "total": 500000,
+      "status": "PAID",
+      "user": { "name": "Customer Name" },
+      "items": [ ... ]
+    }
+  ]
+}
+```
+
+#### Example: Get Order Details
+**Request:** `GET /orders/order-uuid-999`
+
+**Response:**
+```json
+{
+  "data": {
+    "id": "order-uuid-999",
+    "total": 500000,
+    "status": "PAID",
+    "shippingAddress": { ... },
+    "items": [
+      {
+        "product": { "name": "Tas Rajut" },
+        "quantity": 1,
+        "price": 500000
+      }
+    ]
+  }
+}
+```
+
+#### Example: Update Order Status (Admin)
+**Request:**
+```json
+PATCH /orders/order-uuid-999/status
+{
+  "status": "SHIPPED"
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "id": "order-uuid-999",
+    "status": "SHIPPED"
+  }
+}
+```
+
+#### Example: Create Order
+**Request:**
+```json
+POST /orders
+{
+  "items": [
+    { "productId": "prod-uuid-1", "quantity": 2, "selectedVariants": { "color": "red" } },
+    { "productId": "prod-uuid-2", "quantity": 1 }
+  ],
+  "shippingAddress": {
+    "address": "Jl. Kemenangan No. 10",
+    "city": "Bandung",
+    "postalCode": "40123"
+  }
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "id": "order-uuid-999",
+    "total": 500000,
+    "status": "PENDING",
+    "createdAt": "2024-01-01T12:00:00Z"
+  }
+}
+```
+
+### Reviews (`/reviews`)
+*   **POST** `/reviews`: Submit a review.
+    *   *Logic*: Check if `orderId` exists for this user and product to ensure verified purchase.
+*   **GET** `/reviews`: Get reviews for a product (public).
+
+#### Example: Submit Review
+**Request:**
+```json
+POST /reviews
+{
+  "productId": "prod-uuid-1",
+  "rating": 5,
+  "comment": "Sangat bagus! Anak saya suka sekali."
+}
+  "comment": "Sangat bagus! Anak saya suka sekali."
+}
+```a
+
+#### Example: List Reviews
+**Request:** `GET /reviews?productId=prod-uuid-1`
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": "rev-uuid-1",
+      "rating": 5,
+      "comment": "Bagus banget!",
+      "user": { "name": "Customer 1", "avatar": "avatar.jpg" },
+      "createdAt": "2024-02-01T10:00:00Z"
+    }
+  ]
+}
+```
+
+
+### Users (`/users`)
+*   **GET** `/users`: List users (Admin only).
+*   **PATCH** `/users/:id/role`: Change user role (Admin only).
+
+#### Example: List Users (Admin)
+**Request:** `GET /users`
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": "user-uuid-1",
+      "name": "Budi",
+      "email": "budi@example.com",
+      "role": "Customer"
+    }
+  ]
+}
+```
+
+#### Example: Update User Role (Admin)
+**Request:**
+```json
+PATCH /users/user-uuid-1/role
+{
+  "roleId": "role-admin-uuid"
+}
+```
+**Response:**
+```json
+{
+  "data": {
+    "id": "user-uuid-1",
+    "role": "Admin"
+  }
+}
+```
+

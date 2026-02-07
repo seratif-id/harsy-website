@@ -60,7 +60,6 @@ export default function AdminReviewsPage() {
     fetchData();
   }, []);
 
-  // Reset to first page when search or filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, userId, productId]);
@@ -133,7 +132,6 @@ export default function AdminReviewsPage() {
 
   const { items: sortedReviews, requestSort, sortConfig } = useSortableData(filteredReviews);
 
-  // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedReviews.slice(indexOfFirstItem, indexOfLastItem);
@@ -303,7 +301,6 @@ export default function AdminReviewsPage() {
           </table>
         </div>
 
-        {/* Pagination Controls */}
         {totalPages > 1 && (
             <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
                 <div className="text-sm text-gray-500">
@@ -350,7 +347,6 @@ export default function AdminReviewsPage() {
         )}
       </div>
 
-      {/* Details Modal */}
       {selectedOrder && (
           <Modal
               isOpen={!!selectedOrder}
@@ -358,7 +354,6 @@ export default function AdminReviewsPage() {
               title={`Order Details #${selectedOrder.id}`}
           >
               <div className="space-y-6">
-                  {/* Status & Date Info */}
                   <div className="flex flex-wrap gap-4 justify-between items-start bg-gray-50 p-4 rounded-xl border border-gray-100">
                       <div>
                           <p className="text-sm text-gray-500 mb-1">Order Status</p>
@@ -376,7 +371,6 @@ export default function AdminReviewsPage() {
                       </div>
                   </div>
 
-                  {/* Customer Info */}
                   <div>
                       <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                           <span className="w-1 h-5 bg-brand-primary rounded-full"></span>
@@ -415,7 +409,6 @@ export default function AdminReviewsPage() {
                       </div>
                   </div>
 
-                  {/* Order Items */}
                   <div>
                       <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                           <span className="w-1 h-5 bg-brand-primary rounded-full"></span>
@@ -468,7 +461,6 @@ export default function AdminReviewsPage() {
           </Modal>
       )}
 
-      {/* Product Variant Details Modal */}
       {selectedOrder && selectedItemIndex !== null && (
           <Modal
               isOpen={selectedItemIndex !== null}

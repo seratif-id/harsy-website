@@ -1,16 +1,21 @@
+"use client";
+
 import Link from "next/link";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
-import Image from "next/image";
-import { getCategories } from "@/lib/services/category-service";
+import { Plus, Loader2 } from "lucide-react";
 import React from 'react';
+import { CategoriesTable } from "./CategoriesTable";
+import { useGetCategoriesQuery } from "@/lib/redux/slices/apiSlice";
 
-// Client component for delete functionality
-import { CategoryList } from "./CategoryList";
+export default function CategoriesPage() {
+  const { data: categories = [], isLoading } = useGetCategoriesQuery();
 
-export const dynamic = "force-dynamic";
-
-export default async function CategoriesPage() {
-  const categories = await getCategories();
+  if (isLoading) {
+      return (
+          <div className="flex justify-center items-center h-64">
+              <Loader2 className="w-8 h-8 animate-spin text-brand-primary" />
+          </div>
+      );
+  }
 
   return (
     <div className="space-y-6">
@@ -28,7 +33,7 @@ export default async function CategoriesPage() {
         </Link>
       </div>
 
-      <CategoryList categories={categories} />
+      <CategoriesTable categories={categories} />
     </div>
   );
 }

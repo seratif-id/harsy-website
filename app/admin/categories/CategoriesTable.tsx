@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 import { useSortableData } from "@/utils/hooks/useSortableData";
 import { SortableHeader } from "@/components/molecules/SortableHeader";
 
-interface CategoryListProps {
+interface CategoriesTableProps {
   categories: Category[];
 }
 
-export const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
+export const CategoriesTable: React.FC<CategoriesTableProps> = ({ categories }) => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDeleting, setIsDeleting] = useState<string | null>(null);

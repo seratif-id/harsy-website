@@ -2,50 +2,40 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Plus, Edit, Trash2, Search, Loader2, Star, Users, Eye } from "lucide-react";
+import { Plus, Edit, Trash2, Search, Loader2, Star, Users, Eye, ChevronLeft, ChevronRight, X, Upload, Save, AlertCircle } from "lucide-react";
 import Image from "next/image";
 import { Product, User, Order } from "@/lib/types";
+import { useGetProductsQuery } from "@/lib/redux/slices/apiSlice";
 import { Modal } from "@/components/molecules/Modal";
 import { useSortableData } from "@/utils/hooks/useSortableData";
 import { SortableHeader } from "@/components/molecules/SortableHeader";
 
 export default function AdminProductsPage() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   
-  // Buyers View State
   const [buyersModalOpen, setBuyersModalOpen] = useState(false);
   const [productBuyers, setProductBuyers] = useState<User[]>([]);
   const [selectedProductForBuyers, setSelectedProductForBuyers] = useState<Product | null>(null);
   const [loadingBuyers, setLoadingBuyers] = useState(false);
 
+  const { data: productsData, isLoading, error: queryError } = useGetProductsQuery();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (productsData) {
+       const list = Array.isArray(productsData) ? productsData : productsData.products || [];
+       setProducts(list);
+    }
+  }, [productsData]);
 
-  // Reset to first page when search changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
-
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch("/api/products");
-      const data = await res.json();
-      // Handle both array (legacy) and object response format
-      setProducts(Array.isArray(data) ? data : data.products || []);
-    } catch (error) {
-      console.error("Failed to fetch products", error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const fetchProductBuyers = async (product: Product) => {
     setLoadingBuyers(true);
@@ -106,14 +96,12 @@ export default function AdminProductsPage() {
     }
   };
 
-  // Filter first, then sort
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const { items: sortedProducts, requestSort, sortConfig } = useSortableData(filteredProducts);
 
-  // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedProducts.slice(indexOfFirstItem, indexOfLastItem);

@@ -1,4 +1,62 @@
 {
+
+  "landing": {
+    "steps": [
+      {
+        "number": "01",
+        "title": "Pilih Produk",
+        "description": "Jelajahi koleksi boneka, tas, dan aksesoris kami yang unik."
+      },
+      {
+        "number": "02",
+        "title": "Kustom Desain",
+        "description": "Pilih warna dan detail kustom sesuai dengan keinginan Anda."
+      },
+      {
+        "number": "03",
+        "title": "Konsultasi",
+        "description": "Chat via Instagram untuk detail akhir dan konfirmasi pesanan."
+      },
+      {
+        "number": "04",
+        "title": "Proses Rajut",
+        "description": "Kami mulai merajut pesanan Anda dengan penuh ketelitian."
+      },
+      {
+        "number": "05",
+        "title": "Pengiriman",
+        "description": "Produk akan sampai pada Anda dengan aman dan cepat."
+      }
+    ],
+    "about": {
+      "story": {
+        "title": "Kisah di Balik Setiap Rajutan",
+        "subtitle": "Harsy Handmade bermula dari keinginan seorang ibu memberikan kehangatan terbaik untuk sang buah hati.",
+        "content": "Setiap produk kami dikerjakan dengan penuh dedikasi. Kami percaya bahwa barang buatan tangan memiliki energi unik yang membawa keceriaan dan kenyamanan bagi si pemakai.",
+        "stats": "1+ Tahun",
+        "statsLabel": "Menemani momen berharga anak-anak dengan rajutan tangan berkualitas."
+      },
+      "features": [
+        {
+          "title": "Safe & Pure",
+          "description": "Benang katun premium yang lembut & aman untuk kulit bayi.",
+          "icon": "shield"
+        },
+        {
+          "title": "High Detail",
+          "description": "Kerapian rajutan tingkat tinggi dengan kontrol kualitas yang ketat.",
+          "icon": "sparkles"
+        }
+      ],
+      "images": ["/aboutImages/aboutImg1.png", "/aboutImages/aboutImg2.png"]
+    },
+    "contact": {
+      "address": "Jl. Mekarwangi No. 21 \n Kabupaten Bandung Barat \n Jawa Barat 40559",
+      "email": "harsy.handmade@gmail.com",
+      "instagram": "https://instagram.com/harsy.handmade",
+      "socialHandle": "harsy.handmade"
+    }
+  },
   "categories": [
     {
       "id": "1",
@@ -2237,10 +2295,11 @@
       "happyCustomers": {
         "count": "1,200+",
         "label": "Pelanggan Bahagia",
-        "images": [
-           "/avatars/user-1.jpg",
-           "/avatars/user-2.jpg",
-           "/avatars/user-3.jpg"
+        "customers": [
+          { "name": "Sarah Jenkins", "image": "/avatars/user-1.jpg" },
+          { "name": "Budi Santoso" },
+          { "name": "Jessica Mila", "image": "/avatars/user-2.jpg" },
+          { "name": "Harsy Handmade" }
         ]
       }
     },
